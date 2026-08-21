@@ -1,1 +1,1416 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Visão em Foco — uma experiência educativa e interativa sobre anatomia ocular e anomalias da visão.">
+
+    <title>Visão em Foco | Anomalias da Visão</title>
+
+    <!-- FONTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         BARRA DE PROGRESSO
+    ====================================================== -->
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+        <div class="header-container">
+
+            <a href="#inicio" class="logo">
+
+                <span class="logo-icon">
+                    ◉
+                </span>
+
+                <span>
+                    VISÃO<span class="verde">.</span>FOCO
+                </span>
+
+            </a>
+
+
+            <nav class="navigation" id="navigation">
+
+                <a href="#inicio">Início</a>
+
+                <a href="#anatomia">Anatomia</a>
+
+                <a href="#anomalias">Anomalias</a>
+
+                <a href="#laboratorio">Laboratório</a>
+
+                <a href="#quiz">Quiz</a>
+
+                <a href="#acessibilidade">Acessibilidade</a>
+
+            </nav>
+
+
+            <div class="header-buttons">
+
+                <button
+                    class="header-button"
+                    id="themeButton"
+                    aria-label="Alterar tema">
+
+                    ☾
+
+                </button>
+
+
+                <button
+                    class="header-button"
+                    id="accessibilityButton"
+                    aria-label="Abrir acessibilidade">
+
+                    Aa
+
+                </button>
+
+
+                <button
+                    class="header-button menu-button"
+                    id="menuButton"
+                    aria-label="Abrir menu">
+
+                    ☰
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         CONTEÚDO PRINCIPAL
+    ====================================================== -->
+
+    <main>
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="hero" id="inicio">
+
+            <div class="hero-container">
+
+
+                <div class="hero-content reveal">
+
+                    <span class="eyebrow">
+                        01 / SISTEMA VISUAL HUMANO
+                    </span>
+
+
+                    <h1>
+                        O mundo muda
+                        quando você
+                        <span>enxerga.</span>
+                    </h1>
+
+
+                    <p class="hero-description">
+
+                        Descubra como o olho humano funciona,
+                        conheça as principais anomalias da visão
+                        e experimente diferentes formas de
+                        enxergar através de uma experiência
+                        interativa.
+
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="#laboratorio"
+                            class="button button-primary">
+
+                            Experimentar visão
+
+                            <span>↗</span>
+
+                        </a>
+
+
+                        <a
+                            href="#anatomia"
+                            class="button button-secondary">
+
+                            Explorar anatomia
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="hero-numbers">
+
+                        <div>
+                            <strong>06</strong>
+                            <span>condições</span>
+                        </div>
+
+                        <div>
+                            <strong>01</strong>
+                            <span>laboratório</span>
+                        </div>
+
+                        <div>
+                            <strong>03</strong>
+                            <span>desafios</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- OLHO HERO -->
+
+                <div class="hero-visual reveal">
+
+                    <div class="orbit orbit-one"></div>
+
+                    <div class="orbit orbit-two"></div>
+
+
+                    <div class="hero-eye">
+
+                        <div class="hero-eye-white">
+
+                            <div class="hero-iris">
+
+                                <div class="hero-pupil"></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="floating-card floating-card-one">
+
+                        <span>RETINA</span>
+
+                        <small>
+                            captação da luz
+                        </small>
+
+                    </div>
+
+
+                    <div class="floating-card floating-card-two">
+
+                        <span>ÍRIS</span>
+
+                        <small>
+                            controle da luz
+                        </small>
+
+                    </div>
+
+
+                    <div class="scroll-indicator">
+
+                        SCROLL
+
+                        <span>↓</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             INTRODUÇÃO
+        ================================================== -->
+
+        <section class="intro-section">
+
+            <div class="intro-container">
+
+                <div>
+
+                    <span class="intro-label">
+                        VISÃO HUMANA
+                    </span>
+
+                    <h2>
+                        Uma combinação precisa
+                        entre luz, olho e cérebro.
+                    </h2>
+
+                </div>
+
+
+                <p>
+
+                    A visão acontece por meio de uma
+                    sequência complexa. A luz entra no olho,
+                    é transformada em sinais nervosos e
+                    finalmente interpretada pelo cérebro.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ANATOMIA
+        ================================================== -->
+
+        <section
+            class="section anatomy-section"
+            id="anatomia">
+
+            <div class="section-heading reveal">
+
+                <span class="eyebrow">
+                    02 / ANATOMIA
+                </span>
+
+                <h2>
+                    Uma câmera viva.
+                    <span>Extraordinariamente complexa.</span>
+                </h2>
+
+                <p>
+                    Clique nas estruturas do olho para
+                    descobrir suas principais funções.
+                </p>
+
+            </div>
+
+
+            <div class="anatomy-grid">
+
+
+                <!-- DIAGRAMA -->
+
+                <div class="eye-diagram reveal">
+
+                    <div class="diagram-eye">
+
+                        <div class="diagram-iris">
+
+                            <div class="diagram-pupil"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="eye-point point-cornea"
+                        data-part="cornea">
+
+                        +
+
+                    </button>
+
+
+                    <button
+                        class="eye-point point-iris"
+                        data-part="iris">
+
+                        +
+
+                    </button>
+
+
+                    <button
+                        class="eye-point point-retina"
+                        data-part="retina">
+
+                        +
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- INFORMAÇÕES -->
+
+                <div class="anatomy-information reveal">
+
+                    <span class="information-number">
+                        01
+                    </span>
+
+                    <span class="information-label">
+                        ESTRUTURA
+                    </span>
+
+
+                    <h3 id="partTitle">
+                        Córnea
+                    </h3>
+
+
+                    <p id="partDescription">
+                        A córnea é a camada transparente
+                        localizada na parte frontal do olho.
+                        Ela protege a estrutura ocular e
+                        participa da refração da luz.
+                    </p>
+
+
+                    <div class="part-list">
+
+
+                        <button
+                            class="part-button active"
+                            data-part="cornea">
+
+                            <b>01</b>
+
+                            <span>Córnea</span>
+
+                            <small>
+                                proteção e refração
+                            </small>
+
+                        </button>
+
+
+                        <button
+                            class="part-button"
+                            data-part="iris">
+
+                            <b>02</b>
+
+                            <span>Íris</span>
+
+                            <small>
+                                controle da luz
+                            </small>
+
+                        </button>
+
+
+                        <button
+                            class="part-button"
+                            data-part="pupila">
+
+                            <b>03</b>
+
+                            <span>Pupila</span>
+
+                            <small>
+                                abertura do olho
+                            </small>
+
+                        </button>
+
+
+                        <button
+                            class="part-button"
+                            data-part="retina">
+
+                            <b>04</b>
+
+                            <span>Retina</span>
+
+                            <small>
+                                captação da luz
+                            </small>
+
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ANOMALIAS
+        ================================================== -->
+
+        <section
+            class="dark-section"
+            id="anomalias">
+
+            <div class="section">
+
+
+                <div class="section-heading reveal">
+
+                    <span class="eyebrow">
+                        03 / ANOMALIAS
+                    </span>
+
+                    <h2>
+                        Quando a visão
+                        <span>muda de perspectiva.</span>
+                    </h2>
+
+                    <p>
+                        Conheça algumas condições que podem
+                        alterar a maneira como enxergamos.
+                    </p>
+
+                </div>
+
+
+
+                <!-- CARDS -->
+
+                <div class="anomaly-grid">
+
+
+                    <button
+                        class="anomaly-card selected reveal"
+                        data-anomaly="miopia">
+
+                        <span>01</span>
+
+                        <strong>
+                            Miopia
+                        </strong>
+
+                        <small>
+                            objetos distantes
+                        </small>
+
+                        <i>↗</i>
+
+                    </button>
+
+
+                    <button
+                        class="anomaly-card reveal"
+                        data-anomaly="hipermetropia">
+
+                        <span>02</span>
+
+                        <strong>
+                            Hipermetropia
+                        </strong>
+
+                        <small>
+                            objetos próximos
+                        </small>
+
+                        <i>↗</i>
+
+                    </button>
+
+
+                    <button
+                        class="anomaly-card reveal"
+                        data-anomaly="astigmatismo">
+
+                        <span>03</span>
+
+                        <strong>
+                            Astigmatismo
+                        </strong>
+
+                        <small>
+                            foco distorcido
+                        </small>
+
+                        <i>↗</i>
+
+                    </button>
+
+
+                    <button
+                        class="anomaly-card reveal"
+                        data-anomaly="presbiopia">
+
+                        <span>04</span>
+
+                        <strong>
+                            Presbiopia
+                        </strong>
+
+                        <small>
+                            acomodação
+                        </small>
+
+                        <i>↗</i>
+
+                    </button>
+
+
+                    <button
+                        class="anomaly-card reveal"
+                        data-anomaly="catarata">
+
+                        <span>05</span>
+
+                        <strong>
+                            Catarata
+                        </strong>
+
+                        <small>
+                            cristalino
+                        </small>
+
+                        <i>↗</i>
+
+                    </button>
+
+
+                    <button
+                        class="anomaly-card reveal"
+                        data-anomaly="daltonismo">
+
+                        <span>06</span>
+
+                        <strong>
+                            Daltonismo
+                        </strong>
+
+                        <small>
+                            percepção das cores
+                        </small>
+
+                        <i>↗</i>
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- DETALHE -->
+
+                <div class="anomaly-detail reveal">
+
+                    <div class="detail-animation">
+
+                        <div class="focus-circle">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-content">
+
+                        <span
+                            class="lime-label"
+                            id="anomalyCategory">
+
+                            ERRO DE REFRAÇÃO
+
+                        </span>
+
+
+                        <h3 id="anomalyTitle">
+                            Miopia
+                        </h3>
+
+
+                        <p id="anomalyDescription">
+
+                            Na miopia, objetos distantes
+                            podem parecer desfocados porque
+                            a focalização da imagem tende a
+                            ocorrer antes da retina.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             LABORATÓRIO
+        ================================================== -->
+
+        <section
+            class="section laboratory-section"
+            id="laboratorio">
+
+
+            <div class="section-heading reveal">
+
+                <span class="eyebrow">
+                    04 / LABORATÓRIO
+                </span>
+
+                <h2>
+                    Experimente
+                    <span>outra visão.</span>
+                </h2>
+
+                <p>
+                    Escolha uma condição e altere sua
+                    intensidade para observar uma simulação.
+                </p>
+
+            </div>
+
+
+            <div class="laboratory-grid">
+
+
+                <!-- CONTROLES -->
+
+                <aside class="lab-controls reveal">
+
+                    <label class="control-label">
+                        CONDIÇÃO VISUAL
+                    </label>
+
+
+                    <select id="visionType">
+
+                        <option value="normal">
+                            Visão normal
+                        </option>
+
+                        <option value="miopia">
+                            Miopia
+                        </option>
+
+                        <option value="hipermetropia">
+                            Hipermetropia
+                        </option>
+
+                        <option value="astigmatismo">
+                            Astigmatismo
+                        </option>
+
+                        <option value="presbiopia">
+                            Presbiopia
+                        </option>
+
+                        <option value="catarata">
+                            Catarata
+                        </option>
+
+                        <option value="daltonismo">
+                            Daltonismo
+                        </option>
+
+                    </select>
+
+
+                    <div class="range-header">
+
+                        <label class="control-label">
+                            INTENSIDADE
+                        </label>
+
+                        <output id="intensityValue">
+                            50%
+                        </output>
+
+                    </div>
+
+
+                    <input
+                        type="range"
+                        id="visionIntensity"
+                        min="0"
+                        max="100"
+                        value="50">
+
+
+                    <button
+                        class="button dark-button full-width"
+                        id="resetVision">
+
+                        ↻ Resetar laboratório
+
+                    </button>
+
+
+                    <div class="lab-warning">
+
+                        <span>●</span>
+
+                        <p>
+                            Simulação educativa. Ela não
+                            representa um diagnóstico ou uma
+                            reprodução clínica precisa.
+                        </p>
+
+                    </div>
+
+                </aside>
+
+
+
+                <!-- PREVIEW -->
+
+                <div
+                    class="vision-preview reveal"
+                    id="visionPreview">
+
+
+                    <div class="scene-sky"></div>
+
+                    <div class="scene-sun"></div>
+
+                    <div class="scene-mountain mountain-one"></div>
+
+                    <div class="scene-mountain mountain-two"></div>
+
+                    <div class="scene-ground"></div>
+
+
+                    <div class="scene-house">
+
+                        <div class="house-roof"></div>
+
+                        <div class="house-body"></div>
+
+                        <div class="house-window"></div>
+
+                        <div class="house-door"></div>
+
+                    </div>
+
+
+                    <div class="preview-information">
+
+                        <small>
+                            SIMULAÇÃO
+                        </small>
+
+                        <strong id="visionName">
+                            VISÃO NORMAL
+                        </strong>
+
+                    </div>
+
+
+                    <div class="crosshair">
+                        +
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PROCESSO
+        ================================================== -->
+
+        <section class="process-section">
+
+            <div class="section">
+
+                <div class="section-heading center reveal">
+
+                    <span class="eyebrow">
+                        05 / COMO FUNCIONA
+                    </span>
+
+                    <h2>
+                        Da luz ao
+                        <span>pensamento.</span>
+                    </h2>
+
+                </div>
+
+
+                <div class="process-grid">
+
+
+                    <article class="process-card reveal">
+
+                        <span>01</span>
+
+                        <h3>
+                            LUZ
+                        </h3>
+
+                        <p>
+                            A luz refletida pelos objetos
+                            entra no olho através da córnea
+                            e da pupila.
+                        </p>
+
+                    </article>
+
+
+                    <div class="process-arrow">
+                        →
+                    </div>
+
+
+                    <article class="process-card reveal">
+
+                        <span>02</span>
+
+                        <h3>
+                            RETINA
+                        </h3>
+
+                        <p>
+                            Fotorreceptores transformam
+                            estímulos luminosos em sinais
+                            nervosos.
+                        </p>
+
+                    </article>
+
+
+                    <div class="process-arrow">
+                        →
+                    </div>
+
+
+                    <article class="process-card reveal">
+
+                        <span>03</span>
+
+                        <h3>
+                            CÉREBRO
+                        </h3>
+
+                        <p>
+                            O cérebro interpreta os sinais
+                            e constrói aquilo que percebemos
+                            como imagem.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             QUIZ
+        ================================================== -->
+
+        <section
+            class="dark-section quiz-section"
+            id="quiz">
+
+            <div class="section">
+
+
+                <div class="section-heading center reveal">
+
+                    <span class="eyebrow">
+                        06 / DESAFIO
+                    </span>
+
+                    <h2>
+                        Você realmente
+                        <span>entendeu?</span>
+                    </h2>
+
+                </div>
+
+
+                <div class="quiz-grid">
+
+
+                    <div class="score-panel reveal">
+
+                        <span>
+                            SEU RESULTADO
+                        </span>
+
+                        <strong id="quizScore">
+                            0%
+                        </strong>
+
+                        <p id="quizMessage">
+                            Responda às três perguntas.
+                        </p>
+
+                    </div>
+
+
+                    <div class="questions">
+
+
+                        <div
+                            class="question reveal"
+                            data-answer="b">
+
+                            <small>
+                                01 / 03
+                            </small>
+
+                            <h3>
+                                Qual estrutura controla
+                                a quantidade de luz que
+                                entra no olho?
+                            </h3>
+
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="question1"
+                                    value="a">
+
+                                Retina
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="question1"
+                                    value="b">
+
+                                Íris
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="question1"
+                                    value="c">
+
+                                Cristalino
+                            </label>
+
+                        </div>
+
+
+
+                        <div
+                            class="question reveal"
+                            data-answer="a">
+
+                            <small>
+                                02 / 03
+                            </small>
+
+                            <h3>
+                                Onde estão os
+                                fotorreceptores responsáveis
+                                por captar a luz?
+                            </h3>
+
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="question2"
+                                    value="a">
+
+                                Retina
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="question2"
+                                    value="b">
+
+                                Córnea
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="question2"
+                                    value="c">
+
+                                Íris
+                            </label>
+
+                        </div>
+
+
+
+                        <div
+                            class="question reveal"
+                            data-answer="c">
+
+                            <small>
+                                03 / 03
+                            </small>
+
+                            <h3>
+                                Qual condição pode alterar
+                                a percepção de determinadas
+                                cores?
+                            </h3>
+
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="question3"
+                                    value="a">
+
+                                Miopia
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="question3"
+                                    value="b">
+
+                                Presbiopia
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="question3"
+                                    value="c">
+
+                                Daltonismo
+                            </label>
+
+                        </div>
+
+
+                        <button
+                            class="button lime-button"
+                            id="finishQuiz">
+
+                            Finalizar quiz →
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ACESSIBILIDADE
+        ================================================== -->
+
+        <section
+            class="section accessibility-section"
+            id="acessibilidade">
+
+
+            <div class="accessibility-grid">
+
+
+                <div class="accessibility-content reveal">
+
+                    <span class="eyebrow">
+                        07 / ACESSIBILIDADE
+                    </span>
+
+                    <h2>
+                        Um projeto feito
+                        para <span>todos.</span>
+                    </h2>
+
+                    <p>
+                        Personalize a experiência de leitura,
+                        altere o contraste, escolha uma fonte
+                        mais legível e acesse o conteúdo
+                        preparado para Libras.
+                    </p>
+
+
+                    <div class="accessibility-buttons">
+
+                        <button id="fontDecrease">
+                            A−
+                        </button>
+
+                        <button id="fontIncrease">
+                            A+
+                        </button>
+
+                        <button id="fontReset">
+                            A↺
+                        </button>
+
+                        <button id="contrastToggle">
+                            ◐ Contraste
+                        </button>
+
+                        <button id="readableFont">
+                            Aa Fonte legível
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="libras-card reveal">
+
+                    <div class="libras-icon">
+                        🤟
+                    </div>
+
+                    <span>
+                        ACESSIBILIDADE EM LIBRAS
+                    </span>
+
+                    <h3>
+                        Conheça o conteúdo
+                        em Libras.
+                    </h3>
+
+                    <p>
+                        Acesse a área destinada à
+                        interpretação em Língua Brasileira
+                        de Sinais.
+                    </p>
+
+
+                    <button
+                        class="button lime-button"
+                        id="librasButton">
+
+                        Abrir Libras →
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <a
+                href="#inicio"
+                class="logo footer-logo">
+
+                <span class="logo-icon">
+                    ◉
+                </span>
+
+                VISÃO<span class="verde">.</span>FOCO
+
+            </a>
+
+
+            <p>
+                Projeto educativo sobre o sistema
+                visual humano.
+            </p>
+
+
+            <a href="#inicio">
+                ↑ Voltar ao topo
+            </a>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         PAINEL DE ACESSIBILIDADE
+    ====================================================== -->
+
+    <aside
+        class="accessibility-panel"
+        id="accessibilityPanel">
+
+        <button
+            class="close-panel"
+            id="closeAccessibility">
+
+            ×
+
+        </button>
+
+
+        <h3>
+            Acessibilidade
+        </h3>
+
+
+        <button id="panelIncrease">
+            Aumentar fonte
+        </button>
+
+
+        <button id="panelDecrease">
+            Diminuir fonte
+        </button>
+
+
+        <button id="panelContrast">
+            Alto contraste
+        </button>
+
+
+        <button id="panelReadable">
+            Fonte legível
+        </button>
+
+
+        <button id="panelLibras">
+            🤟 Abrir Libras
+        </button>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MODAL LIBRAS
+    ====================================================== -->
+
+    <div
+        class="modal"
+        id="librasModal">
+
+        <div class="modal-content">
+
+
+            <button
+                class="close-modal"
+                id="closeLibras">
+
+                ×
+
+            </button>
+
+
+            <div class="libras-big-icon">
+                🤟
+            </div>
+
+
+            <span class="lime-label">
+                ACESSIBILIDADE
+            </span>
+
+
+            <h2>
+                Conteúdo em Libras
+            </h2>
+
+
+            <p>
+                Esta área está preparada para receber
+                o vídeo de interpretação do conteúdo
+                do projeto em Libras.
+            </p>
+
+
+            <div class="libras-video">
+
+                <span>
+                    🤟
+                </span>
+
+                <strong>
+                    VÍDEO EM LIBRAS
+                </strong>
+
+                <small>
+                    Espaço reservado para o vídeo
+                    de interpretação.
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+```
 
