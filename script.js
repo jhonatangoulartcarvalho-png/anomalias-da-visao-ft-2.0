@@ -1,879 +1,891 @@
-/* =========================================================
-   ANOMALIAS DA VISÃO
-   SCRIPT.JS — VERSÃO FINAL
-========================================================= */
+// =====================================================
+// ANOMALIAS DA VISÃO — SCRIPT FINAL
+// =====================================================
 
+document.addEventListener("DOMContentLoaded", () => {
 
-/* =========================================================
-   1. MENU MOBILE
-========================================================= */
+    // =================================================
+    // TEMA
+    // =================================================
 
-const menuToggle = document.querySelector(".menu-toggle");
-const navLinks = document.querySelector(".nav-links");
+    const themeToggle = document.getElementById("themeToggle");
 
-if (menuToggle && navLinks) {
-    menuToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("mobile-open");
+    if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
 
-        menuToggle.textContent =
-            navLinks.classList.contains("mobile-open")
-                ? "✕"
-                : "☰";
-    });
+            document.body.classList.toggle("light-mode");
 
-    document.querySelectorAll(".nav-links a").forEach(link => {
-        link.addEventListener("click", () => {
-            navLinks.classList.remove("mobile-open");
-            menuToggle.textContent = "☰";
+            themeToggle.textContent =
+                document.body.classList.contains("light-mode")
+                    ? "☀️"
+                    : "🌙";
         });
-    });
-}
-
-
-/* =========================================================
-   2. MODO CLARO / ESCURO
-========================================================= */
-
-const themeButton =
-    document.querySelector("#themeToggle");
-
-if (themeButton) {
-
-    const savedTheme =
-        localStorage.getItem("vision-theme");
-
-    if (savedTheme === "light") {
-        document.body.classList.add("light-mode");
-        themeButton.textContent = "☀️";
     }
 
-    themeButton.addEventListener("click", () => {
 
-        document.body.classList.toggle("light-mode");
+    // =================================================
+    // ACESSIBILIDADE — TAMANHO DA FONTE
+    // =================================================
 
-        const light =
-            document.body.classList.contains("light-mode");
+    let fontSize = 100;
 
-        localStorage.setItem(
-            "vision-theme",
-            light ? "light" : "dark"
-        );
+    const increaseFont = document.getElementById("increaseFont");
+    const decreaseFont = document.getElementById("decreaseFont");
 
-        themeButton.textContent =
-            light ? "☀️" : "🌙";
-    });
-}
+    if (increaseFont) {
 
+        increaseFont.addEventListener("click", () => {
 
-/* =========================================================
-   3. ACESSIBILIDADE — AUMENTAR / DIMINUIR FONTE
-========================================================= */
+            if (fontSize < 130) {
 
-let fontScale = 1;
+                fontSize += 10;
 
-const increaseFont =
-    document.querySelector("#increaseFont");
-
-const decreaseFont =
-    document.querySelector("#decreaseFont");
-
-function updateFontSize() {
-
-    document.documentElement.style.fontSize =
-        `${16 * fontScale}px`;
-}
-
-if (increaseFont) {
-
-    increaseFont.addEventListener("click", () => {
-
-        if (fontScale < 1.3) {
-            fontScale += 0.1;
-            updateFontSize();
-        }
-
-    });
-}
-
-if (decreaseFont) {
-
-    decreaseFont.addEventListener("click", () => {
-
-        if (fontScale > 0.8) {
-            fontScale -= 0.1;
-            updateFontSize();
-        }
-
-    });
-}
+                document.documentElement.style.fontSize =
+                    fontSize + "%";
+            }
+        });
+    }
 
 
-/* =========================================================
-   4. ESCOLHA DE FONTE
-========================================================= */
+    if (decreaseFont) {
 
-const fontSelector =
-    document.querySelector("#fontSelector");
+        decreaseFont.addEventListener("click", () => {
 
-if (fontSelector) {
+            if (fontSize > 80) {
 
-    fontSelector.addEventListener("change", () => {
+                fontSize -= 10;
 
-        const font =
-            fontSelector.value;
-
-        document.body.style.fontFamily =
-            font;
-    });
-}
+                document.documentElement.style.fontSize =
+                    fontSize + "%";
+            }
+        });
+    }
 
 
-/* =========================================================
-   5. ANIMAÇÕES AO ROLAR
-========================================================= */
+    // =================================================
+    // ESCOLHER FONTE
+    // =================================================
 
-const revealElements =
-    document.querySelectorAll(".reveal");
+    const fontSelector =
+        document.getElementById("fontSelector");
 
-const revealObserver =
-    new IntersectionObserver(
-        entries => {
+    if (fontSelector) {
 
-            entries.forEach(entry => {
+        fontSelector.addEventListener("change", () => {
 
-                if (entry.isIntersecting) {
+            document.body.style.fontFamily =
+                fontSelector.value;
 
-                    entry.target.classList.add("visible");
+        });
+    }
 
-                    revealObserver.unobserve(
-                        entry.target
-                    );
-                }
 
+    // =================================================
+    // PESQUISA
+    // =================================================
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    const searchButton =
+        document.getElementById("searchButton");
+
+
+    function pesquisar() {
+
+        if (!searchInput) return;
+
+        const termo =
+            searchInput.value.trim().toLowerCase();
+
+        if (!termo) return;
+
+        const elementos =
+            document.querySelectorAll(
+                "section h2, section h3"
+            );
+
+        let encontrado = null;
+
+        elementos.forEach(elemento => {
+
+            if (
+                !encontrado &&
+                elemento.textContent
+                    .toLowerCase()
+                    .includes(termo)
+            ) {
+
+                encontrado = elemento;
+
+            }
+
+        });
+
+
+        if (encontrado) {
+
+            encontrado.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
             });
 
-        },
-        {
-            threshold: 0.12
-        }
-    );
+            encontrado.style.transition =
+                "0.3s";
 
-revealElements.forEach(element => {
+            encontrado.style.transform =
+                "scale(1.05)";
 
-    revealObserver.observe(element);
+            setTimeout(() => {
 
-});
+                encontrado.style.transform =
+                    "scale(1)";
 
-
-/* =========================================================
-   6. LABORATÓRIO DA VISÃO
-========================================================= */
-
-const visionType =
-    document.querySelector("#visionType");
-
-const intensity =
-    document.querySelector("#intensity");
-
-const intensityValue =
-    document.querySelector("#intensityValue");
-
-const simulationObject =
-    document.querySelector("#simulationObject");
-
-const labExplanation =
-    document.querySelector("#labExplanation");
-
-const resetLab =
-    document.querySelector("#resetLab");
-
-
-const visionData = {
-
-    normal: {
-
-        name: "Visão normal",
-
-        explanation:
-            "Na visão normal, a imagem é focalizada corretamente sobre a retina, permitindo uma percepção nítida dos objetos.",
-
-        filter: "none"
-
-    },
-
-    miopia: {
-
-        name: "Miopia",
-
-        explanation:
-            "Na miopia, objetos próximos costumam ser vistos com mais nitidez, enquanto objetos distantes podem parecer borrados.",
-
-        filter:
-            "blur(3px) contrast(1.05)"
-
-    },
-
-    hipermetropia: {
-
-        name: "Hipermetropia",
-
-        explanation:
-            "Na hipermetropia, existe dificuldade principalmente para focalizar objetos próximos.",
-
-        filter:
-            "blur(2px) brightness(1.08)"
-
-    },
-
-    astigmatismo: {
-
-        name: "Astigmatismo",
-
-        explanation:
-            "O astigmatismo pode causar uma visão distorcida ou borrada devido à forma irregular da córnea ou do sistema óptico.",
-
-        filter:
-            "blur(2px) contrast(.8) skewX(2deg)"
-
-    },
-
-    presbiopia: {
-
-        name: "Presbiopia",
-
-        explanation:
-            "A presbiopia está relacionada à perda gradual da capacidade de focalizar objetos próximos, geralmente associada ao envelhecimento.",
-
-        filter:
-            "blur(2.5px)"
-
-    },
-
-    daltonismo: {
-
-        name: "Daltonismo",
-
-        explanation:
-            "O daltonismo envolve diferenças na percepção de determinadas cores. Ele não significa necessariamente enxergar tudo em preto e branco.",
-
-        filter:
-            "grayscale(.55) saturate(.45)"
-
-    }
-
-};
-
-
-function updateLab() {
-
-    if (!visionType ||
-        !simulationObject ||
-        !intensity) {
-        return;
-    }
-
-    const selected =
-        visionType.value;
-
-    const level =
-        Number(intensity.value);
-
-    const data =
-        visionData[selected];
-
-    if (!data) return;
-
-    if (intensityValue) {
-
-        intensityValue.textContent =
-            `${level}%`;
-
-    }
-
-    let filter =
-        data.filter;
-
-    if (selected === "normal") {
-
-        simulationObject.style.filter =
-            "none";
-
-    } else {
-
-        /*
-        Ajusta a intensidade do efeito.
-        */
-
-        const amount =
-            level / 50;
-
-        if (selected === "miopia") {
-
-            simulationObject.style.filter =
-                `blur(${2 * amount}px) contrast(1.05)`;
-
-        }
-
-        else if (selected === "hipermetropia") {
-
-            simulationObject.style.filter =
-                `blur(${1.5 * amount}px) brightness(1.08)`;
-
-        }
-
-        else if (selected === "astigmatismo") {
-
-            simulationObject.style.filter =
-                `blur(${1.5 * amount}px) contrast(.8)`;
-
-            simulationObject.style.transform =
-                `scaleX(${1 + (level / 500)})`;
-
-        }
-
-        else if (selected === "presbiopia") {
-
-            simulationObject.style.filter =
-                `blur(${2 * amount}px)`;
-
-        }
-
-        else if (selected === "daltonismo") {
-
-            simulationObject.style.filter =
-                `grayscale(${level / 100}) saturate(.45)`;
-
-        }
-
-    }
-
-    if (selected !== "astigmatismo") {
-
-        simulationObject.style.transform =
-            "scaleX(1)";
-
-    }
-
-    if (labExplanation) {
-
-        labExplanation.innerHTML = `
-            <strong>${data.name}</strong><br>
-            ${data.explanation}
-        `;
-
-    }
-}
-
-
-if (visionType) {
-
-    visionType.addEventListener(
-        "change",
-        updateLab
-    );
-
-}
-
-if (intensity) {
-
-    intensity.addEventListener(
-        "input",
-        updateLab
-    );
-
-}
-
-if (resetLab) {
-
-    resetLab.addEventListener("click", () => {
-
-        if (visionType) {
-            visionType.value = "normal";
-        }
-
-        if (intensity) {
-            intensity.value = 0;
-        }
-
-        updateLab();
-
-    });
-
-}
-
-updateLab();
-
-
-/* =========================================================
-   7. MITOS E VERDADES
-========================================================= */
-
-document.querySelectorAll(".myth-card")
-    .forEach(card => {
-
-        card.addEventListener("click", () => {
-
-            card.classList.toggle("active");
-
-        });
-
-    });
-
-
-/* =========================================================
-   8. FAQ
-========================================================= */
-
-document.querySelectorAll(".faq-item")
-    .forEach(item => {
-
-        const question =
-            item.querySelector(".faq-question");
-
-        if (!question) return;
-
-        question.addEventListener("click", () => {
-
-            document
-                .querySelectorAll(".faq-item.active")
-                .forEach(openItem => {
-
-                    if (openItem !== item) {
-                        openItem.classList.remove("active");
-                    }
-
-                });
-
-            item.classList.toggle("active");
-
-        });
-
-    });
-
-
-/* =========================================================
-   9. QUIZ
-========================================================= */
-
-const quizQuestions = [
-
-    {
-        question:
-            "Qual anomalia costuma dificultar a visão de objetos distantes?",
-
-        answers: [
-            "Hipermetropia",
-            "Miopia",
-            "Presbiopia",
-            "Daltonismo"
-        ],
-
-        correct: 1
-    },
-
-    {
-        question:
-            "Qual estrutura do olho recebe a luz e participa da formação das imagens?",
-
-        answers: [
-            "Retina",
-            "Íris",
-            "Pupila",
-            "Nervo óptico"
-        ],
-
-        correct: 0
-    },
-
-    {
-        question:
-            "Qual estrutura controla a quantidade de luz que entra no olho?",
-
-        answers: [
-            "Cristalino",
-            "Retina",
-            "Íris",
-            "Nervo óptico"
-        ],
-
-        correct: 2
-    },
-
-    {
-        question:
-            "O astigmatismo pode causar:",
-
-        answers: [
-            "Somente dificuldade para distinguir cores",
-            "Distorção ou borramento da visão",
-            "Apenas cegueira noturna",
-            "Somente dor de cabeça"
-        ],
-
-        correct: 1
-    },
-
-    {
-        question:
-            "O daltonismo está relacionado principalmente à percepção de:",
-
-        answers: [
-            "Sons",
-            "Temperatura",
-            "Cores",
-            "Distâncias"
-        ],
-
-        correct: 2
-    },
-
-    {
-        question:
-            "A presbiopia está geralmente relacionada:",
-
-        answers: [
-            "Ao envelhecimento",
-            "À falta de luz",
-            "Ao excesso de cores",
-            "À alteração da pupila por alguns minutos"
-        ],
-
-        correct: 0
-    },
-
-    {
-        question:
-            "Qual destas atitudes ajuda nos cuidados com os olhos?",
-
-        answers: [
-            "Ignorar sintomas persistentes",
-            "Usar medicamentos por conta própria",
-            "Realizar avaliações oftalmológicas quando indicadas",
-            "Nunca descansar os olhos"
-        ],
-
-        correct: 2
-    }
-
-];
-
-
-let currentQuestion = 0;
-
-let score = 0;
-
-const questionElement =
-    document.querySelector("#quizQuestion");
-
-const answersElement =
-    document.querySelector("#quizAnswers");
-
-const progressBar =
-    document.querySelector("#quizProgress");
-
-const quizResult =
-    document.querySelector("#quizResult");
-
-const retryQuiz =
-    document.querySelector("#retryQuiz");
-
-
-function loadQuestion() {
-
-    if (!questionElement ||
-        !answersElement) {
-        return;
-    }
-
-    const question =
-        quizQuestions[currentQuestion];
-
-    questionElement.textContent =
-        question.question;
-
-    answersElement.innerHTML = "";
-
-    question.answers.forEach(
-        (answer, index) => {
-
-            const button =
-                document.createElement("button");
-
-            button.className =
-                "answer";
-
-            button.textContent =
-                answer;
-
-            button.addEventListener(
-                "click",
-                () => selectAnswer(index)
-            );
-
-            answersElement.appendChild(
-                button
-            );
-
-        }
-    );
-
-    if (progressBar) {
-
-        const progress =
-            (currentQuestion /
-                quizQuestions.length) * 100;
-
-        progressBar.style.width =
-            `${progress}%`;
-
-    }
-
-}
-
-
-function selectAnswer(index) {
-
-    const question =
-        quizQuestions[currentQuestion];
-
-    const buttons =
-        answersElement.querySelectorAll(
-            ".answer"
-        );
-
-    buttons.forEach(button => {
-        button.disabled = true;
-    });
-
-    if (index === question.correct) {
-
-        buttons[index]
-            .classList.add("correct");
-
-        score++;
-
-    } else {
-
-        buttons[index]
-            .classList.add("wrong");
-
-        buttons[question.correct]
-            .classList.add("correct");
-
-    }
-
-    setTimeout(() => {
-
-        currentQuestion++;
-
-        if (
-            currentQuestion >=
-            quizQuestions.length
-        ) {
-
-            finishQuiz();
+            }, 1000);
 
         } else {
 
-            loadQuestion();
+            alert(
+                "Não encontramos esse conteúdo no site."
+            );
+
+        }
+    }
+
+
+    if (searchButton) {
+
+        searchButton.addEventListener(
+            "click",
+            pesquisar
+        );
+
+    }
+
+
+    if (searchInput) {
+
+        searchInput.addEventListener(
+            "keydown",
+            event => {
+
+                if (event.key === "Enter") {
+
+                    pesquisar();
+
+                }
+
+            }
+        );
+
+    }
+
+
+
+    // =================================================
+    // LABORATÓRIO DA VISÃO
+    // =================================================
+
+    const visionType =
+        document.getElementById("visionType");
+
+    const intensity =
+        document.getElementById("intensity");
+
+    const intensityValue =
+        document.getElementById("intensityValue");
+
+    const simulationObject =
+        document.getElementById("simulationObject");
+
+    const labExplanation =
+        document.getElementById("labExplanation");
+
+    const resetLab =
+        document.getElementById("resetLab");
+
+
+    // Verificação para saber se o laboratório existe
+
+    if (
+        visionType &&
+        intensity &&
+        intensityValue &&
+        simulationObject &&
+        labExplanation
+    ) {
+
+
+        function atualizarLaboratorio() {
+
+            const tipo =
+                visionType.value;
+
+            const valor =
+                Number(intensity.value);
+
+
+            intensityValue.textContent =
+                valor + "%";
+
+
+            // Remove efeitos antigos
+
+            simulationObject.style.filter = "";
+
+            simulationObject.style.transform = "";
+
+            simulationObject.style.background = "";
+
+            simulationObject.style.boxShadow = "";
+
+            simulationObject.style.opacity = "1";
+
+
+            // =========================================
+            // VISÃO NORMAL
+            // =========================================
+
+            if (tipo === "normal") {
+
+                labExplanation.innerHTML = `
+                    <strong>👁️ Visão normal</strong>
+                    <br>
+                    A imagem está sendo apresentada
+                    sem uma alteração visual simulada.
+                `;
+
+            }
+
+
+            // =========================================
+            // MIOPIA
+            // =========================================
+
+            if (tipo === "miopia") {
+
+                const blur =
+                    (valor / 100) * 8;
+
+                simulationObject.style.filter =
+                    `blur(${blur}px)`;
+
+                labExplanation.innerHTML = `
+                    <strong>🔵 Miopia</strong>
+                    <br>
+                    Na miopia, objetos distantes podem
+                    apresentar menor nitidez.
+                    <br><br>
+                    Intensidade da simulação:
+                    ${valor}%.
+                `;
+
+            }
+
+
+            // =========================================
+            // HIPERMETROPIA
+            // =========================================
+
+            if (tipo === "hipermetropia") {
+
+                const blur =
+                    (valor / 100) * 6;
+
+                simulationObject.style.filter =
+                    `blur(${blur}px) brightness(1.08)`;
+
+                labExplanation.innerHTML = `
+                    <strong>🟣 Hipermetropia</strong>
+                    <br>
+                    A focalização de objetos próximos
+                    pode apresentar dificuldade.
+                    <br><br>
+                    Intensidade da simulação:
+                    ${valor}%.
+                `;
+
+            }
+
+
+            // =========================================
+            // ASTIGMATISMO
+            // =========================================
+
+            if (tipo === "astigmatismo") {
+
+                const blur =
+                    (valor / 100) * 4;
+
+                const rotate =
+                    (valor / 100) * 1.5;
+
+                simulationObject.style.filter =
+                    `blur(${blur}px)`;
+
+                simulationObject.style.transform =
+                    `skew(${rotate}deg, ${rotate}deg)`;
+
+                labExplanation.innerHTML = `
+                    <strong>✨ Astigmatismo</strong>
+                    <br>
+                    O astigmatismo pode provocar
+                    borramento ou distorção das imagens.
+                    <br><br>
+                    Intensidade da simulação:
+                    ${valor}%.
+                `;
+
+            }
+
+
+            // =========================================
+            // PRESBIOPIA
+            // =========================================
+
+            if (tipo === "presbiopia") {
+
+                const blur =
+                    (valor / 100) * 7;
+
+                simulationObject.style.filter =
+                    `blur(${blur}px)`;
+
+                labExplanation.innerHTML = `
+                    <strong>🔍 Presbiopia</strong>
+                    <br>
+                    A capacidade de focalizar objetos
+                    próximos diminui progressivamente
+                    com o envelhecimento.
+                    <br><br>
+                    Intensidade da simulação:
+                    ${valor}%.
+                `;
+
+            }
+
+
+            // =========================================
+            // DALTONISMO
+            // =========================================
+
+            if (tipo === "daltonismo") {
+
+                const grau =
+                    valor / 100;
+
+                simulationObject.style.filter =
+                    `grayscale(${grau * 0.8}) 
+                     sepia(${grau * 0.2})`;
+
+                labExplanation.innerHTML = `
+                    <strong>🎨 Daltonismo</strong>
+                    <br>
+                    O daltonismo envolve diferenças
+                    na percepção de determinadas cores.
+                    <br><br>
+                    A simulação é apenas ilustrativa
+                    e não representa todos os tipos
+                    de daltonismo.
+                    <br><br>
+                    Intensidade:
+                    ${valor}%.
+                `;
+
+            }
 
         }
 
-    }, 900);
 
-}
+        visionType.addEventListener(
+            "change",
+            atualizarLaboratorio
+        );
 
 
-function finishQuiz() {
+        intensity.addEventListener(
+            "input",
+            atualizarLaboratorio
+        );
 
-    if (questionElement) {
 
-        questionElement.textContent =
-            "🧠 Resultado do laboratório";
+        if (resetLab) {
 
-    }
+            resetLab.addEventListener("click", () => {
 
-    if (answersElement) {
+                visionType.value = "normal";
 
-        answersElement.innerHTML = `
-            <div class="quiz-result">
-                <h3>Você acertou ${score} de ${quizQuestions.length}!</h3>
-                <p>
-                    ${
-                        score === quizQuestions.length
-                            ? "🏆 Excelente! Você domina o assunto."
-                            : score >= 5
-                                ? "🔥 Muito bem! Você conhece bastante sobre visão."
-                                : score >= 3
-                                    ? "👍 Bom trabalho! Continue aprendendo."
-                                    : "📚 Que tal revisar o conteúdo e tentar novamente?"
-                    }
-                </p>
-            </div>
-        `;
+                intensity.value = 0;
 
-    }
+                atualizarLaboratorio();
 
-    if (progressBar) {
+            });
 
-        progressBar.style.width =
-            "100%";
+        }
+
+
+        // Inicializa
+
+        atualizarLaboratorio();
 
     }
 
-    if (retryQuiz) {
-
-        retryQuiz.style.display =
-            "inline-flex";
-
-    }
-
-}
 
 
-if (retryQuiz) {
+    // =================================================
+    // QUIZ
+    // =================================================
 
-    retryQuiz.addEventListener(
-        "click",
-        () => {
+    const quizQuestion =
+        document.getElementById("quizQuestion");
 
-            currentQuestion = 0;
+    const quizAnswers =
+        document.getElementById("quizAnswers");
 
-            score = 0;
+    const quizProgress =
+        document.getElementById("quizProgress");
+
+    const retryQuiz =
+        document.getElementById("retryQuiz");
+
+
+    const perguntas = [
+
+        {
+            pergunta:
+                "Qual condição costuma dificultar a visão de objetos distantes?",
+
+            respostas: [
+                "Miopia",
+                "Presbiopia",
+                "Daltonismo",
+                "Catarata"
+            ],
+
+            correta: 0
+        },
+
+
+        {
+            pergunta:
+                "Qual estrutura do olho recebe os estímulos luminosos?",
+
+            respostas: [
+                "Íris",
+                "Retina",
+                "Pupila",
+                "Córnea"
+            ],
+
+            correta: 1
+        },
+
+
+        {
+            pergunta:
+                "Qual estrutura ajuda a focalizar a imagem?",
+
+            respostas: [
+                "Cristalino",
+                "Nervo óptico",
+                "Íris",
+                "Retina"
+            ],
+
+            correta: 0
+        },
+
+
+        {
+            pergunta:
+                "O astigmatismo pode causar:",
+
+            respostas: [
+                "Somente perda de cores",
+                "Distorção ou borramento visual",
+                "Apenas dor de cabeça",
+                "Aumento da pupila"
+            ],
+
+            correta: 1
+        },
+
+
+        {
+            pergunta:
+                "O daltonismo está relacionado principalmente à percepção de:",
+
+            respostas: [
+                "Sons",
+                "Temperatura",
+                "Cores",
+                "Distâncias"
+            ],
+
+            correta: 2
+        },
+
+
+        {
+            pergunta:
+                "Qual estrutura transporta informações visuais ao cérebro?",
+
+            respostas: [
+                "Córnea",
+                "Nervo óptico",
+                "Íris",
+                "Cristalino"
+            ],
+
+            correta: 1
+        },
+
+
+        {
+            pergunta:
+                "A presbiopia está relacionada principalmente à dificuldade de:",
+
+            respostas: [
+                "Enxergar cores",
+                "Focalizar objetos próximos",
+                "Enxergar no escuro",
+                "Perceber movimentos"
+            ],
+
+            correta: 1
+        },
+
+
+        {
+            pergunta:
+                "Qual é uma atitude importante para cuidar da saúde ocular?",
+
+            respostas: [
+                "Nunca consultar um profissional",
+                "Usar qualquer colírio sem orientação",
+                "Realizar avaliações quando necessário",
+                "Evitar completamente a luz"
+            ],
+
+            correta: 2
+        }
+
+    ];
+
+
+    let perguntaAtual = 0;
+
+    let pontuacao = 0;
+
+
+    function iniciarQuiz() {
+
+        perguntaAtual = 0;
+
+        pontuacao = 0;
+
+        if (retryQuiz) {
 
             retryQuiz.style.display =
                 "none";
 
-            loadQuestion();
+        }
+
+        mostrarPergunta();
+
+    }
+
+
+    function mostrarPergunta() {
+
+        if (
+            !quizQuestion ||
+            !quizAnswers
+        ) return;
+
+
+        const pergunta =
+            perguntas[perguntaAtual];
+
+
+        quizQuestion.textContent =
+            pergunta.pergunta;
+
+
+        quizAnswers.innerHTML = "";
+
+
+        // Progresso
+
+        if (quizProgress) {
+
+            const progresso =
+                ((perguntaAtual) /
+                perguntas.length) * 100;
+
+            quizProgress.style.width =
+                progresso + "%";
 
         }
-    );
-
-}
-
-loadQuestion();
 
 
-/* =========================================================
-   10. PESQUISA
-========================================================= */
+        pergunta.respostas.forEach(
+            (resposta, indice) => {
 
-const searchButton =
-    document.querySelector("#searchButton");
+                const button =
+                    document.createElement("button");
 
-const searchInput =
-    document.querySelector("#searchInput");
 
-if (searchButton) {
+                button.className =
+                    "quiz-answer";
 
-    searchButton.addEventListener(
-        "click",
-        () => {
 
-            if (!searchInput) return;
+                button.textContent =
+                    resposta;
 
-            const term =
-                searchInput.value
-                    .trim()
-                    .toLowerCase();
 
-            if (!term) return;
+                button.addEventListener(
+                    "click",
+                    () => {
 
-            const sections =
-                document.querySelectorAll(
-                    "section"
+                        responder(indice);
+
+                    }
                 );
 
-            let found = false;
 
-            sections.forEach(section => {
-
-                if (
-                    !found &&
-                    section.innerText
-                        .toLowerCase()
-                        .includes(term)
-                ) {
-
-                    section.scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-                    found = true;
-
-                }
-
-            });
-
-            if (!found) {
-
-                alert(
-                    "Não encontramos esse termo no site."
-                );
+                quizAnswers.appendChild(button);
 
             }
+        );
+
+    }
+
+
+    function responder(indice) {
+
+        const pergunta =
+            perguntas[perguntaAtual];
+
+
+        const botoes =
+            quizAnswers.querySelectorAll(
+                ".quiz-answer"
+            );
+
+
+        botoes.forEach(
+            botao => {
+
+                botao.disabled = true;
+
+            }
+        );
+
+
+        if (indice === pergunta.correta) {
+
+            pontuacao++;
+
+            botoes[indice].classList.add(
+                "correct"
+            );
+
+        } else {
+
+            botoes[indice].classList.add(
+                "wrong"
+            );
+
+            botoes[
+                pergunta.correta
+            ].classList.add(
+                "correct"
+            );
 
         }
-    );
-
-}
 
 
-/* =========================================================
-   11. ESC — FECHAR MENU
-========================================================= */
+        setTimeout(() => {
 
-document.addEventListener(
-    "keydown",
-    event => {
+            perguntaAtual++;
 
-        if (event.key === "Escape") {
 
-            if (navLinks) {
+            if (
+                perguntaAtual <
+                perguntas.length
+            ) {
 
-                navLinks.classList.remove(
-                    "mobile-open"
-                );
+                mostrarPergunta();
+
+            } else {
+
+                finalizarQuiz();
 
             }
 
-            if (menuToggle) {
+        }, 900);
 
-                menuToggle.textContent =
-                    "☰";
+    }
 
-            }
+
+    function finalizarQuiz() {
+
+        quizQuestion.innerHTML = `
+            🏆 Quiz concluído!
+        `;
+
+
+        quizAnswers.innerHTML = `
+            <div class="quiz-result">
+
+                <div class="score-circle">
+                    ${pontuacao}/${perguntas.length}
+                </div>
+
+                <h3>
+                    Você acertou
+                    ${pontuacao}
+                    de
+                    ${perguntas.length}
+                    perguntas!
+                </h3>
+
+                <p>
+                    ${mensagemResultado()}
+                </p>
+
+            </div>
+        `;
+
+
+        if (quizProgress) {
+
+            quizProgress.style.width =
+                "100%";
+
+        }
+
+
+        if (retryQuiz) {
+
+            retryQuiz.style.display =
+                "inline-flex";
 
         }
 
     }
-);
 
 
-/* =========================================================
-   12. BOTÕES "SAIBA MAIS"
-========================================================= */
+    function mensagemResultado() {
 
-document
-    .querySelectorAll("[data-scroll]")
-    .forEach(button => {
+        const porcentagem =
+            (pontuacao /
+            perguntas.length) * 100;
 
-        button.addEventListener(
+
+        if (porcentagem === 100) {
+
+            return "🔥 Perfeito! Você domina o assunto!";
+
+        }
+
+        if (porcentagem >= 75) {
+
+            return "👏 Muito bom! Você conhece bastante sobre visão.";
+
+        }
+
+        if (porcentagem >= 50) {
+
+            return "👍 Bom trabalho! Continue estudando.";
+
+        }
+
+        return "📚 Continue estudando. Você vai melhorar!";
+
+    }
+
+
+    if (retryQuiz) {
+
+        retryQuiz.addEventListener(
+            "click",
+            iniciarQuiz
+        );
+
+    }
+
+
+    // Inicia o quiz
+
+    if (
+        quizQuestion &&
+        quizAnswers
+    ) {
+
+        iniciarQuiz();
+
+    }
+
+
+
+    // =================================================
+    // FAQ
+    // =================================================
+
+    const faqItems =
+        document.querySelectorAll(
+            ".faq-item"
+        );
+
+
+    faqItems.forEach(item => {
+
+        const question =
+            item.querySelector(
+                ".faq-question"
+            );
+
+
+        if (question) {
+
+            question.addEventListener(
+                "click",
+                () => {
+
+                    item.classList.toggle(
+                        "active"
+                    );
+
+                }
+            );
+
+        }
+
+    });
+
+
+
+    // =================================================
+    // MITOS E VERDADES
+    // =================================================
+
+    const mythCards =
+        document.querySelectorAll(
+            ".myth-card"
+        );
+
+
+    mythCards.forEach(card => {
+
+        card.addEventListener(
             "click",
             () => {
 
-                const target =
-                    document.querySelector(
-                        button.dataset.scroll
-                    );
-
-                if (target) {
-
-                    target.scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-                }
+                card.classList.toggle(
+                    "active"
+                );
 
             }
         );
@@ -881,59 +893,65 @@ document
     });
 
 
-/* =========================================================
-   13. EFEITO PARALLAX LEVE NO HERO
-========================================================= */
 
-const heroVisual =
-    document.querySelector(".hero-visual");
+    // =================================================
+    // ANIMAÇÕES AO ROLAR
+    // =================================================
 
-if (heroVisual) {
-
-    window.addEventListener(
-        "mousemove",
-        event => {
-
-            const x =
-                (window.innerWidth / 2 -
-                    event.clientX) / 50;
-
-            const y =
-                (window.innerHeight / 2 -
-                    event.clientY) / 50;
-
-            heroVisual.style.transform =
-                `translate(${x}px, ${y}px)`;
-
-        }
-    );
-
-}
+    const reveals =
+        document.querySelectorAll(
+            ".reveal"
+        );
 
 
-/* =========================================================
-   14. ANO AUTOMÁTICO
-========================================================= */
+    const observer =
+        new IntersectionObserver(
+            entries => {
 
-document
-    .querySelectorAll("[data-year]")
-    .forEach(element => {
+                entries.forEach(entry => {
 
-        element.textContent =
-            new Date().getFullYear();
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.1
+            }
+        );
+
+
+    reveals.forEach(element => {
+
+        observer.observe(element);
 
     });
 
 
-/* =========================================================
-   15. LOG
-========================================================= */
 
-console.log(
-    "%c ANOMALIAS DA VISÃO ",
-    "background:#071b2d;color:#00e5ff;font-size:18px;font-weight:bold;padding:8px;"
-);
+    // =================================================
+    // ANO DO FOOTER
+    // =================================================
 
-console.log(
-    "Laboratório da Visão carregado com sucesso."
-);
+    const year =
+        document.querySelector(
+            "[data-year]"
+        );
+
+
+    if (year) {
+
+        year.textContent =
+            new Date().getFullYear();
+
+    }
+
+});
