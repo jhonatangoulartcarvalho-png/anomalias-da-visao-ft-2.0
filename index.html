@@ -1,6 +1,7 @@
 ```html
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,86 +9,1110 @@
     <title>Anomalias da Visão</title>
 
     <meta name="description"
-        content="Site educativo sobre as principais anomalias da visão, prevenção, diagnóstico e cuidados com a saúde ocular.">
+        content="Conheça as principais anomalias da visão, seus sintomas, causas e formas de correção.">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=Roboto+Slab:wght@400;600;700&display=swap"
-        rel="stylesheet">
+        /* ================================
+           RESET
+        ================================= */
 
-    <link rel="stylesheet" href="style.css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f8ff;
+            color: #16233b;
+            line-height: 1.6;
+            transition: 0.3s;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+        /* ================================
+           VARIÁVEIS
+        ================================= */
+
+        :root {
+            --blue: #1677ff;
+            --blue-dark: #073b8f;
+            --blue-light: #eaf3ff;
+            --blue-soft: #f4f8ff;
+
+            --white: #ffffff;
+            --text: #16233b;
+            --gray: #64748b;
+
+            --border: #dce7f5;
+
+            --shadow:
+                0 15px 45px rgba(13, 74, 150, 0.12);
+        }
+
+        /* ================================
+           HEADER
+        ================================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: auto;
+
+            min-height: 75px;
+
+            padding: 0 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            color: var(--blue-dark);
+
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+
+            border-radius: 13px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: linear-gradient(
+                135deg,
+                #1266e8,
+                #55adff
+            );
+
+            color: white;
+
+            font-size: 21px;
+
+            box-shadow:
+                0 8px 22px rgba(22,119,255,0.3);
+        }
+
+        nav {
+            display: flex;
+            gap: 6px;
+        }
+
+        nav a {
+            padding: 10px 14px;
+
+            border-radius: 9px;
+
+            color: #53627a;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: 0.25s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--blue);
+            background: var(--blue-light);
+        }
+
+        /* ================================
+           ACCESSIBILITY
+        ================================= */
+
+        .accessibility {
+            display: flex;
+            gap: 6px;
+        }
+
+        .accessibility button {
+            width: 36px;
+            height: 36px;
+
+            border: 1px solid var(--border);
+            border-radius: 9px;
+
+            background: white;
+            color: var(--blue-dark);
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+        .accessibility button:hover {
+            background: var(--blue);
+            color: white;
+        }
+
+        /* ================================
+           HERO
+        ================================= */
+
+        .hero {
+            min-height: 620px;
+
+            padding: 90px 25px;
+
+            position: relative;
+            overflow: hidden;
+
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(80,170,255,0.4),
+                    transparent 28%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #041c48,
+                    #07439c 55%,
+                    #1479f5
+                );
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+
+            align-items: center;
+
+            gap: 60px;
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 8px 15px;
+
+            margin-bottom: 20px;
+
+            border-radius: 50px;
+
+            background: rgba(255,255,255,0.1);
+
+            border: 1px solid rgba(255,255,255,0.2);
+
+            color: #d8eaff;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            margin-bottom: 20px;
+
+            font-size: clamp(42px, 6vw, 70px);
+
+            line-height: 1.03;
+
+            letter-spacing: -2px;
+        }
+
+        .hero h1 span {
+            color: #65b3ff;
+        }
+
+        .hero p {
+            max-width: 620px;
+
+            margin-bottom: 30px;
+
+            color: #d9e8ff;
+
+            font-size: 17px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 13px 21px;
+
+            border-radius: 10px;
+
+            font-weight: 700;
+
+            transition: 0.25s;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--blue-dark);
+        }
+
+        .btn-secondary {
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.08);
+
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* ================================
+           OLHO
+        ================================= */
+
+        .eye-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .eye {
+            width: 330px;
+            height: 210px;
+
+            position: relative;
+
+            border: 7px solid white;
+
+            border-radius: 70% 15% 70% 15%;
+
+            transform: rotate(45deg);
+
+            box-shadow:
+                0 0 50px rgba(100,190,255,0.6);
+
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        .iris {
+            position: absolute;
+
+            width: 110px;
+            height: 110px;
+
+            top: 50%;
+            left: 50%;
+
+            transform:
+                translate(-50%, -50%)
+                rotate(-45deg);
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #071d48 0 22%,
+                    #1d7ee8 23% 45%,
+                    #6fc1ff 46% 55%,
+                    #0a4b9d 56% 100%
+                );
+
+            box-shadow:
+                0 0 25px rgba(80,180,255,0.8);
+        }
+
+        @keyframes floating {
+
+            0%,100% {
+                transform:
+                    rotate(45deg)
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    rotate(45deg)
+                    translateY(-10px);
+            }
+        }
+
+        /* ================================
+           SEÇÕES
+        ================================= */
+
+        section {
+            padding: 90px 25px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-title {
+            max-width: 700px;
+
+            margin: 0 auto 50px;
+
+            text-align: center;
+        }
+
+        .section-title span {
+            color: var(--blue);
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+        }
+
+        .section-title h2 {
+            margin: 8px 0 14px;
+
+            color: var(--blue-dark);
+
+            font-size: 38px;
+
+            line-height: 1.15;
+        }
+
+        .section-title p {
+            color: var(--gray);
+        }
+
+        /* ================================
+           CARDS
+        ================================= */
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .card {
+            padding: 30px;
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            box-shadow: var(--shadow);
+
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+
+            border-color: #a9cdfc;
+
+            box-shadow:
+                0 25px 50px rgba(20,90,180,0.18);
+        }
+
+        .card-icon {
+            width: 58px;
+            height: 58px;
+
+            margin-bottom: 20px;
+
+            border-radius: 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: var(--blue-light);
+
+            color: var(--blue);
+
+            font-size: 25px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+
+            color: var(--blue-dark);
+
+            font-size: 21px;
+        }
+
+        .card p {
+            color: var(--gray);
+
+            font-size: 14px;
+        }
+
+        .card .tag {
+            display: inline-block;
+
+            margin-top: 18px;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            background: #e8f2ff;
+
+            color: var(--blue);
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+        /* ================================
+           DESTAQUE
+        ================================= */
+
+        .highlight {
+            background:
+                linear-gradient(
+                    135deg,
+                    #06265d,
+                    #0c55c5
+                );
+
+            color: white;
+        }
+
+        .highlight .section-title h2 {
+            color: white;
+        }
+
+        .highlight .section-title p {
+            color: #c8dcf8;
+        }
+
+        .highlight-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 20px;
+        }
+
+        .highlight-box {
+            padding: 30px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255,255,255,0.09);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.14);
+
+            backdrop-filter: blur(10px);
+        }
+
+        .highlight-box strong {
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 20px;
+        }
+
+        .highlight-box p {
+            color: #d2e3fa;
+
+            font-size: 14px;
+        }
+
+        /* ================================
+           TABELA
+        ================================= */
+
+        .table-container {
+            overflow-x: auto;
+
+            border-radius: 17px;
+
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            background: white;
+        }
+
+        th {
+            padding: 17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #073b8f,
+                    #1677ff
+                );
+
+            color: white;
+
+            text-align: left;
+
+            font-size: 13px;
+        }
+
+        td {
+            padding: 17px;
+
+            border-bottom:
+                1px solid #edf2f8;
+
+            color: var(--gray);
+
+            font-size: 14px;
+        }
+
+        tr:hover td {
+            background: #f7faff;
+        }
+
+        /* ================================
+           PESQUISA
+        ================================= */
+
+        .search-box {
+            max-width: 700px;
+
+            margin: 0 auto 35px;
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+
+            padding: 15px 18px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            outline: none;
+
+            font-size: 15px;
+
+            background: white;
+        }
+
+        .search-box input:focus {
+            border-color: var(--blue);
+
+            box-shadow:
+                0 0 0 4px
+                rgba(22,119,255,0.1);
+        }
+
+        .search-box button {
+            padding: 0 20px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: var(--blue);
+
+            color: white;
+
+            cursor: pointer;
+
+            font-weight: 700;
+        }
+
+        /* ================================
+           FAQ
+        ================================= */
+
+        .faq {
+            max-width: 850px;
+
+            margin: auto;
+        }
+
+        .faq-item {
+            margin-bottom: 12px;
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: 13px;
+
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+
+            padding: 19px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            border: none;
+
+            background: white;
+
+            color: var(--blue-dark);
+
+            cursor: pointer;
+
+            text-align: left;
+
+            font-size: 15px;
+
+            font-weight: 700;
+        }
+
+        .faq-answer {
+            max-height: 0;
+
+            overflow: hidden;
+
+            padding: 0 19px;
+
+            color: var(--gray);
+
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+
+            padding-bottom: 20px;
+        }
+
+        .faq-question span {
+            font-size: 22px;
+
+            transition: 0.3s;
+        }
+
+        .faq-item.open
+        .faq-question span {
+            transform: rotate(45deg);
+        }
+
+        /* ================================
+           FOOTER
+        ================================= */
+
+        footer {
+            padding: 60px 25px 25px;
+
+            background: #041a3b;
+
+            color: white;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                1.5fr 1fr 1fr;
+
+            gap: 50px;
+        }
+
+        footer h3 {
+            margin-bottom: 12px;
+        }
+
+        footer p,
+        footer a {
+            color: #9db2d1;
+
+            font-size: 13px;
+        }
+
+        footer a {
+            display: block;
+
+            margin-bottom: 8px;
+        }
+
+        footer a:hover {
+            color: #5eafff;
+        }
+
+        .copyright {
+            max-width: 1200px;
+
+            margin: 40px auto 0;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.1);
+
+            text-align: center;
+
+            color: #7187a8;
+
+            font-size: 12px;
+        }
+
+        /* ================================
+           VOLTAR AO TOPO
+        ================================= */
+
+        #topButton {
+            position: fixed;
+
+            right: 25px;
+            bottom: 25px;
+
+            width: 46px;
+            height: 46px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: var(--blue);
+
+            color: white;
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition: 0.3s;
+
+            box-shadow:
+                0 10px 25px
+                rgba(22,119,255,0.3);
+
+            z-index: 999;
+        }
+
+        #topButton.show {
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+        /* ================================
+           ANIMAÇÃO
+        ================================= */
+
+        .reveal {
+            opacity: 0;
+
+            transform: translateY(25px);
+
+            transition: 0.7s;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+        /* ================================
+           MODO ESCURO
+        ================================= */
+
+        body.dark {
+            background: #081525;
+
+            color: #e8f1ff;
+        }
+
+        body.dark header {
+            background: rgba(7,20,38,0.95);
+
+            border-color: #193250;
+        }
+
+        body.dark .logo {
+            color: white;
+        }
+
+        body.dark nav a {
+            color: #a8bad3;
+        }
+
+        body.dark nav a:hover,
+        body.dark nav a.active {
+            background: #102e50;
+
+            color: #63adff;
+        }
+
+        body.dark .accessibility button {
+            background: #102238;
+
+            border-color: #25415f;
+
+            color: white;
+        }
+
+        body.dark .section-title h2 {
+            color: #78baff;
+        }
+
+        body.dark .section-title p {
+            color: #9eb1ca;
+        }
+
+        body.dark .card,
+        body.dark .faq-item,
+        body.dark .faq-question,
+        body.dark .search-box input,
+        body.dark table {
+            background: #0d1e32;
+
+            border-color: #203953;
+
+            color: #e8f1ff;
+        }
+
+        body.dark .card h3,
+        body.dark .faq-question {
+            color: #7dbbff;
+        }
+
+        body.dark .card p,
+        body.dark .faq-answer,
+        body.dark td {
+            color: #9eb1ca;
+        }
+
+        body.dark .faq-question {
+            background: #0d1e32;
+        }
+
+        body.dark tr:hover td {
+            background: #122941;
+        }
+
+        body.dark .search-box input {
+            color: white;
+        }
+
+        /* ================================
+           RESPONSIVO
+        ================================= */
+
+        @media(max-width: 950px) {
+
+            nav {
+                display: none;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+
+                text-align: center;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .cards {
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+
+            .highlight-grid {
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+
+            .footer-container {
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+        }
+
+        @media(max-width: 650px) {
+
+            .header-container {
+                padding: 0 15px;
+            }
+
+            .accessibility {
+                display: none;
+            }
+
+            .hero {
+                padding: 70px 20px;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+            }
+
+            .eye {
+                width: 250px;
+                height: 160px;
+            }
+
+            .iris {
+                width: 80px;
+                height: 80px;
+            }
+
+            section {
+                padding: 65px 20px;
+            }
+
+            .section-title h2 {
+                font-size: 30px;
+            }
+
+            .cards,
+            .highlight-grid,
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-box button {
+                padding: 13px;
+            }
+        }
+
+    </style>
 </head>
 
 <body>
 
-    <!-- =========================
-         BARRA SUPERIOR
-    ========================== -->
-
-    <div class="topbar">
-        <div class="container topbar-content">
-
-            <div class="topbar-info">
-                <span>👁️ Saúde e Ciência</span>
-                <span>•</span>
-                <span>Projeto educativo</span>
-            </div>
-
-            <div class="topbar-accessibility">
-                <button id="decreaseFont" title="Diminuir fonte">A−</button>
-                <button id="resetFont" title="Tamanho normal">A</button>
-                <button id="increaseFont" title="Aumentar fonte">A+</button>
-
-                <button id="contrastButton" title="Alto contraste">
-                    ◐
-                </button>
-            </div>
-
-        </div>
-    </div>
-
-
-    <!-- =========================
+    <!-- ================================
          HEADER
-    ========================== -->
+    ================================= -->
 
-    <header class="header" id="header">
+    <header>
 
-        <div class="container nav-container">
+        <div class="header-container">
 
             <a href="#inicio" class="logo">
+
                 <div class="logo-icon">
                     👁
                 </div>
 
-                <div>
-                    <strong>VISÃO</strong>
-                    <small>Anomalias da Visão</small>
-                </div>
+                <span>Anomalias da Visão</span>
+
             </a>
 
-            <nav class="nav" id="nav">
+            <nav>
 
-                <a href="#inicio" class="active">Início</a>
-                <a href="#olho">O olho</a>
-                <a href="#anomalias">Anomalias</a>
-                <a href="#simulador">Simulador</a>
-                <a href="#cuidados">Cuidados</a>
-                <a href="#quiz">Quiz</a>
+                <a href="#inicio" class="active">
+                    Início
+                </a>
+
+                <a href="#anomalias">
+                    Anomalias
+                </a>
+
+                <a href="#comparacao">
+                    Comparação
+                </a>
+
+                <a href="#faq">
+                    FAQ
+                </a>
 
             </nav>
 
-            <div class="header-actions">
+            <div class="accessibility">
 
-                <button class="libras-button" id="librasButton">
-                    🤟 <span>Libras</span>
+                <button id="smaller"
+                    title="Diminuir texto">
+                    A-
                 </button>
 
-                <button class="menu-button" id="menuButton">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <button id="larger"
+                    title="Aumentar texto">
+                    A+
+                </button>
+
+                <button id="font"
+                    title="Mudar fonte">
+                    F
+                </button>
+
+                <button id="dark"
+                    title="Modo escuro">
+                    ☾
                 </button>
 
             </div>
@@ -97,1025 +1122,1179 @@
     </header>
 
 
-    <!-- =========================
+    <!-- ================================
          HERO
-    ========================== -->
+    ================================= -->
 
-    <main>
+    <section
+        class="hero"
+        id="inicio">
 
-        <section class="hero" id="inicio">
+        <div class="hero-container">
 
-            <div class="hero-background">
-                <div class="hero-glow glow-one"></div>
-                <div class="hero-glow glow-two"></div>
-                <div class="hero-grid"></div>
-            </div>
+            <div>
 
-            <div class="container hero-content">
-
-                <div class="hero-text">
-
-                    <div class="section-tag">
-                        <span></span>
-                        CIÊNCIA • SAÚDE • EDUCAÇÃO
-                    </div>
-
-                    <h1>
-                        Enxergar é
-                        <span>descobrir</span>
-                        o mundo.
-                    </h1>
-
-                    <p>
-                        Conheça o funcionamento dos nossos olhos,
-                        descubra as principais anomalias da visão e
-                        aprenda como cuidar melhor da sua saúde ocular.
-                    </p>
-
-                    <div class="hero-buttons">
-
-                        <a href="#anomalias" class="btn btn-primary">
-                            Explorar anomalias
-                            <span>→</span>
-                        </a>
-
-                        <a href="#olho" class="btn btn-outline">
-                            Como funciona o olho?
-                        </a>
-
-                    </div>
-
-                    <div class="hero-stats">
-
-                        <div class="stat">
-                            <strong>4+</strong>
-                            <span>anomalias</span>
-                        </div>
-
-                        <div class="stat">
-                            <strong>360°</strong>
-                            <span>de informação</span>
-                        </div>
-
-                        <div class="stat">
-                            <strong>100%</strong>
-                            <span>educativo</span>
-                        </div>
-
-                    </div>
-
+                <div class="badge">
+                    🔬 CIÊNCIAS • VISÃO HUMANA
                 </div>
 
+                <h1>
+                    Entenda as
+                    <span>anomalias</span>
+                    da visão
+                </h1>
 
-                <div class="hero-visual">
+                <p>
+                    Descubra como funciona a visão humana,
+                    quais são os principais problemas de
+                    refração e como eles podem ser corrigidos.
+                </p>
 
-                    <div class="eye-orbit orbit-one"></div>
-                    <div class="eye-orbit orbit-two"></div>
-                    <div class="eye-orbit orbit-three"></div>
+                <div class="buttons">
 
-                    <div class="eye-card">
+                    <a
+                        href="#anomalias"
+                        class="btn btn-primary">
 
-                        <div class="eye">
-                            <div class="eye-white">
-                                <div class="iris">
-                                    <div class="pupil"></div>
-                                    <div class="iris-detail"></div>
-                                </div>
-                            </div>
-                        </div>
+                        Explorar anomalias →
 
-                        <div class="eye-label">
-                            <span>●</span>
-                            Sistema visual humano
-                        </div>
+                    </a>
 
-                    </div>
+                    <a
+                        href="#comparacao"
+                        class="btn btn-secondary">
 
-                    <div class="floating-card floating-one">
-                        <strong>+80%</strong>
-                        <span>da percepção do mundo</span>
-                    </div>
+                        Ver comparação
 
-                    <div class="floating-card floating-two">
-                        <span class="mini-icon">✦</span>
-                        <div>
-                            <strong>Cuide da visão</strong>
-                            <small>Faça exames regularmente</small>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="scroll-indicator">
-                <span>Role para explorar</span>
-                <div></div>
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             INTRO
-        ========================== -->
-
-        <section class="intro section-padding">
-
-            <div class="container">
-
-                <div class="intro-grid">
-
-                    <div>
-                        <div class="section-tag dark">
-                            <span></span>
-                            POR QUE ISSO IMPORTA?
-                        </div>
-
-                        <h2>
-                            A visão é uma das nossas
-                            principais formas de
-                            <span>interagir com o mundo.</span>
-                        </h2>
-                    </div>
-
-                    <div class="intro-text">
-
-                        <p>
-                            Os olhos captam a luz e enviam informações
-                            ao cérebro, permitindo que reconheçamos
-                            formas, cores, movimentos e profundidade.
-                        </p>
-
-                        <p>
-                            Quando alguma parte desse sistema apresenta
-                            alterações, podem surgir diferentes
-                            problemas de visão.
-                        </p>
-
-                        <a href="#olho" class="text-link">
-                            Entenda como funciona →
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             OLHO
-        ========================== -->
-
-        <section class="eye-section section-padding" id="olho">
-
-            <div class="container">
-
-                <div class="section-heading centered">
-
-                    <div class="section-tag">
-                        <span></span>
-                        ANATOMIA
-                    </div>
-
-                    <h2>
-                        Conheça o
-                        <span>olho humano</span>
-                    </h2>
-
-                    <p>
-                        Cada estrutura possui uma função essencial
-                        para que a visão aconteça.
-                    </p>
-
-                </div>
-
-
-                <div class="anatomy">
-
-                    <div class="anatomy-image">
-
-                        <div class="anatomy-eye">
-
-                            <div class="cornea"></div>
-                            <div class="iris-anatomy"></div>
-                            <div class="lens"></div>
-                            <div class="retina"></div>
-                            <div class="optic-nerve"></div>
-
-                        </div>
-
-                        <div class="anatomy-line line-one"></div>
-                        <div class="anatomy-line line-two"></div>
-                        <div class="anatomy-line line-three"></div>
-
-                    </div>
-
-
-                    <div class="anatomy-info">
-
-                        <button class="structure active" data-structure="cornea">
-
-                            <span>01</span>
-
-                            <div>
-                                <h3>Córnea</h3>
-                                <p>
-                                    Primeira estrutura que recebe a luz.
-                                </p>
-                            </div>
-
-                        </button>
-
-
-                        <button class="structure" data-structure="iris">
-
-                            <span>02</span>
-
-                            <div>
-                                <h3>Íris</h3>
-                                <p>
-                                    Controla a quantidade de luz que entra.
-                                </p>
-                            </div>
-
-                        </button>
-
-
-                        <button class="structure" data-structure="lens">
-
-                            <span>03</span>
-
-                            <div>
-                                <h3>Cristalino</h3>
-                                <p>
-                                    Ajuda a focalizar a imagem.
-                                </p>
-                            </div>
-
-                        </button>
-
-
-                        <button class="structure" data-structure="retina">
-
-                            <span>04</span>
-
-                            <div>
-                                <h3>Retina</h3>
-                                <p>
-                                    Recebe a luz e transforma em sinais.
-                                </p>
-                            </div>
-
-                        </button>
-
-
-                        <button class="structure" data-structure="nerve">
-
-                            <span>05</span>
-
-                            <div>
-                                <h3>Nervo óptico</h3>
-                                <p>
-                                    Leva os sinais visuais até o cérebro.
-                                </p>
-                            </div>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             ANOMALIAS
-        ========================== -->
-
-        <section class="anomalies section-padding" id="anomalias">
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <div>
-                        <div class="section-tag">
-                            <span></span>
-                            PRINCIPAIS CONDIÇÕES
-                        </div>
-
-                        <h2>
-                            Quando a visão
-                            <span>muda</span>
-                        </h2>
-                    </div>
-
-                    <p>
-                        Conheça algumas das alterações visuais
-                        mais comuns e entenda como elas afetam
-                        a formação das imagens.
-                    </p>
-
-                </div>
-
-
-                <div class="anomaly-grid">
-
-
-                    <article class="anomaly-card">
-
-                        <div class="card-number">01</div>
-
-                        <div class="anomaly-icon">
-                            ◉
-                        </div>
-
-                        <h3>Miopia</h3>
-
-                        <p>
-                            Dificuldade para enxergar objetos
-                            que estão distantes.
-                        </p>
-
-                        <div class="vision-demo myopia-demo">
-                            VISÃO DISTANTE
-                        </div>
-
-                        <button class="learn-more"
-                            data-modal="miopia">
-                            Saiba mais →
-                        </button>
-
-                    </article>
-
-
-                    <article class="anomaly-card featured">
-
-                        <div class="card-number">02</div>
-
-                        <div class="anomaly-icon">
-                            ◎
-                        </div>
-
-                        <h3>Hipermetropia</h3>
-
-                        <p>
-                            Pode dificultar principalmente a
-                            visão de objetos próximos.
-                        </p>
-
-                        <div class="vision-demo hyper-demo">
-                            VISÃO PRÓXIMA
-                        </div>
-
-                        <button class="learn-more"
-                            data-modal="hipermetropia">
-                            Saiba mais →
-                        </button>
-
-                    </article>
-
-
-                    <article class="anomaly-card">
-
-                        <div class="card-number">03</div>
-
-                        <div class="anomaly-icon">
-                            ◌
-                        </div>
-
-                        <h3>Astigmatismo</h3>
-
-                        <p>
-                            Pode causar visão distorcida ou
-                            desfocada em diferentes distâncias.
-                        </p>
-
-                        <div class="vision-demo astigmatism-demo">
-                            DISTORÇÃO
-                        </div>
-
-                        <button class="learn-more"
-                            data-modal="astigmatismo">
-                            Saiba mais →
-                        </button>
-
-                    </article>
-
-
-                    <article class="anomaly-card">
-
-                        <div class="card-number">04</div>
-
-                        <div class="anomaly-icon">
-                            ◍
-                        </div>
-
-                        <h3>Presbiopia</h3>
-
-                        <p>
-                            Alteração relacionada ao envelhecimento
-                            que dificulta a visão de perto.
-                        </p>
-
-                        <div class="vision-demo presbyopia-demo">
-                            VISÃO DE PERTO
-                        </div>
-
-                        <button class="learn-more"
-                            data-modal="presbiopia">
-                            Saiba mais →
-                        </button>
-
-                    </article>
-
-
-                    <article class="anomaly-card">
-
-                        <div class="card-number">05</div>
-
-                        <div class="anomaly-icon">
-                            ◉
-                        </div>
-
-                        <h3>Daltonismo</h3>
-
-                        <p>
-                            Diferenças na percepção de determinadas
-                            cores.
-                        </p>
-
-                        <div class="vision-demo daltonism-demo">
-                            CORES
-                        </div>
-
-                        <button class="learn-more"
-                            data-modal="daltonismo">
-                            Saiba mais →
-                        </button>
-
-                    </article>
-
-
-                    <article class="anomaly-card">
-
-                        <div class="card-number">06</div>
-
-                        <div class="anomaly-icon">
-                            ●
-                        </div>
-
-                        <h3>Catarata</h3>
-
-                        <p>
-                            Alteração do cristalino que pode
-                            deixar a visão embaçada.
-                        </p>
-
-                        <div class="vision-demo cataract-demo">
-                            IMAGEM
-                        </div>
-
-                        <button class="learn-more"
-                            data-modal="catarata">
-                            Saiba mais →
-                        </button>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             SIMULADOR
-        ========================== -->
-
-        <section class="simulator section-padding" id="simulador">
-
-            <div class="container">
-
-                <div class="section-heading centered">
-
-                    <div class="section-tag">
-                        <span></span>
-                        EXPERIÊNCIA INTERATIVA
-                    </div>
-
-                    <h2>
-                        Como seria
-                        <span>enxergar assim?</span>
-                    </h2>
-
-                    <p>
-                        Selecione uma condição e veja uma representação
-                        simplificada de como a imagem pode ser afetada.
-                    </p>
-
-                </div>
-
-
-                <div class="simulator-box">
-
-                    <div class="simulator-controls">
-
-                        <h3>Escolha uma condição</h3>
-
-                        <button class="vision-option active"
-                            data-vision="normal">
-                            <span>●</span>
-                            Visão normal
-                        </button>
-
-                        <button class="vision-option"
-                            data-vision="myopia">
-                            <span>●</span>
-                            Miopia
-                        </button>
-
-                        <button class="vision-option"
-                            data-vision="hyper">
-                            <span>●</span>
-                            Hipermetropia
-                        </button>
-
-                        <button class="vision-option"
-                            data-vision="astigmatism">
-                            <span>●</span>
-                            Astigmatismo
-                        </button>
-
-                        <button class="vision-option"
-                            data-vision="cataract">
-                            <span>●</span>
-                            Catarata
-                        </button>
-
-                    </div>
-
-
-                    <div class="vision-screen" id="visionScreen">
-
-                        <div class="city-scene">
-
-                            <div class="sun"></div>
-
-                            <div class="mountain mountain-one"></div>
-                            <div class="mountain mountain-two"></div>
-
-                            <div class="building building-one"></div>
-                            <div class="building building-two"></div>
-                            <div class="building building-three"></div>
-
-                            <div class="road"></div>
-
-                            <div class="scene-text">
-                                VISÃO NORMAL
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             CUIDADOS
-        ========================== -->
-
-        <section class="care section-padding" id="cuidados">
-
-            <div class="container">
-
-                <div class="care-grid">
-
-                    <div class="care-text">
-
-                        <div class="section-tag dark">
-                            <span></span>
-                            PREVENÇÃO
-                        </div>
-
-                        <h2>
-                            Cuide dos seus
-                            <span>olhos todos os dias.</span>
-                        </h2>
-
-                        <p>
-                            Pequenos hábitos podem contribuir para
-                            manter uma boa saúde ocular.
-                        </p>
-
-                        <a href="#quiz" class="btn btn-primary">
-                            Testar meus conhecimentos →
-                        </a>
-
-                    </div>
-
-
-                    <div class="care-list">
-
-                        <div class="care-item">
-                            <div class="care-number">01</div>
-                            <div>
-                                <h3>Faça consultas</h3>
-                                <p>
-                                    Exames oftalmológicos ajudam
-                                    a identificar alterações.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="care-item">
-                            <div class="care-number">02</div>
-                            <div>
-                                <h3>Proteja seus olhos</h3>
-                                <p>
-                                    Utilize proteção adequada em
-                                    situações de risco.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="care-item">
-                            <div class="care-number">03</div>
-                            <div>
-                                <h3>Faça pausas das telas</h3>
-                                <p>
-                                    Alterne períodos de uso de telas
-                                    com momentos de descanso.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="care-item">
-                            <div class="care-number">04</div>
-                            <div>
-                                <h3>Não use colírios por conta própria</h3>
-                                <p>
-                                    Procure orientação profissional
-                                    quando necessário.
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             QUIZ
-        ========================== -->
-
-        <section class="quiz section-padding" id="quiz">
-
-            <div class="container">
-
-                <div class="quiz-box">
-
-                    <div class="quiz-header">
-
-                        <div class="section-tag">
-                            <span></span>
-                            DESAFIO
-                        </div>
-
-                        <h2>
-                            Você conhece
-                            <span>sua visão?</span>
-                        </h2>
-
-                        <p>
-                            Responda às perguntas e descubra
-                            quanto você aprendeu.
-                        </p>
-
-                    </div>
-
-
-                    <div class="quiz-content">
-
-                        <div class="quiz-progress">
-
-                            <div>
-                                <span id="questionNumber">Pergunta 1 de 5</span>
-                                <strong id="scoreText">0 pontos</strong>
-                            </div>
-
-                            <div class="progress-bar">
-                                <span id="progressBar"></span>
-                            </div>
-
-                        </div>
-
-
-                        <div id="questionArea">
-
-                            <h3 id="question">
-                                Qual estrutura do olho recebe a luz
-                                e transforma os estímulos em sinais?
-                            </h3>
-
-                            <div class="answers" id="answers">
-
-                                <button data-answer="0">
-                                    Córnea
-                                </button>
-
-                                <button data-answer="1">
-                                    Retina
-                                </button>
-
-                                <button data-answer="2">
-                                    Íris
-                                </button>
-
-                                <button data-answer="3">
-                                    Cristalino
-                                </button>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="quiz-result" id="quizResult">
-
-                            <div class="result-icon">🏆</div>
-
-                            <h3>Quiz concluído!</h3>
-
-                            <p id="resultMessage">
-                                Você terminou o desafio.
-                            </p>
-
-                            <strong id="finalScore">
-                                0/5
-                            </strong>
-
-                            <button class="btn btn-primary"
-                                id="restartQuiz">
-                                Fazer novamente
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             CTA
-        ========================== -->
-
-        <section class="final-cta">
-
-            <div class="container">
-
-                <div class="cta-content">
-
-                    <div class="cta-eye">
-                        👁
-                    </div>
-
-                    <h2>
-                        Conhecimento também
-                        é uma forma de cuidado.
-                    </h2>
-
-                    <p>
-                        Aprenda, compartilhe e incentive outras pessoas
-                        a cuidarem da própria saúde visual.
-                    </p>
-
-                    <a href="#inicio" class="btn btn-white">
-                        Voltar ao início ↑
                     </a>
 
                 </div>
 
             </div>
 
-        </section>
 
-    </main>
+            <div class="eye-area">
 
+                <div class="eye">
 
-    <!-- =========================
-         FOOTER
-    ========================== -->
+                    <div class="iris"></div>
 
-    <footer class="footer">
-
-        <div class="container footer-grid">
-
-            <div class="footer-brand">
-
-                <div class="logo footer-logo">
-                    <div class="logo-icon">
-                        👁
-                    </div>
-
-                    <div>
-                        <strong>VISÃO</strong>
-                        <small>Anomalias da Visão</small>
-                    </div>
                 </div>
 
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         INTRODUÇÃO
+    ================================= -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="section-title reveal">
+
+                <span>Conhecimento</span>
+
+                <h2>
+                    Como enxergamos?
+                </h2>
+
                 <p>
-                    Projeto educativo desenvolvido para apresentar
-                    informações sobre saúde ocular de forma simples,
-                    visual e interativa.
+                    A visão depende da entrada da luz no olho,
+                    da formação da imagem na retina e do
+                    processamento das informações pelo cérebro.
                 </p>
 
             </div>
 
 
-            <div class="footer-column">
+            <div class="cards">
 
-                <h4>Navegação</h4>
+                <div class="card reveal">
 
-                <a href="#inicio">Início</a>
-                <a href="#olho">O olho</a>
-                <a href="#anomalias">Anomalias</a>
-                <a href="#simulador">Simulador</a>
+                    <div class="card-icon">
+                        💡
+                    </div>
+
+                    <h3>
+                        Luz
+                    </h3>
+
+                    <p>
+                        A luz refletida pelos objetos entra
+                        nos olhos através da córnea e da pupila.
+                    </p>
+
+                </div>
+
+
+                <div class="card reveal">
+
+                    <div class="card-icon">
+                        👁
+                    </div>
+
+                    <h3>
+                        Retina
+                    </h3>
+
+                    <p>
+                        A retina recebe a luz e transforma
+                        os estímulos luminosos em sinais nervosos.
+                    </p>
+
+                </div>
+
+
+                <div class="card reveal">
+
+                    <div class="card-icon">
+                        🧠
+                    </div>
+
+                    <h3>
+                        Cérebro
+                    </h3>
+
+                    <p>
+                        O cérebro interpreta os sinais enviados
+                        pelo olho e produz a percepção visual.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         ANOMALIAS
+    ================================= -->
+
+    <section
+        id="anomalias"
+        style="background:#eef5ff;">
+
+        <div class="container">
+
+            <div class="section-title reveal">
+
+                <span>Principais problemas</span>
+
+                <h2>
+                    Anomalias da visão
+                </h2>
+
+                <p>
+                    Conheça algumas das alterações mais comuns
+                    relacionadas à formação das imagens.
+                </p>
 
             </div>
 
 
-            <div class="footer-column">
+            <div class="search-box">
 
-                <h4>Explore</h4>
+                <input
+                    id="search"
+                    type="text"
+                    placeholder="Pesquisar uma anomalia...">
 
-                <a href="#cuidados">Cuidados</a>
-                <a href="#quiz">Quiz</a>
-                <button id="footerLibras">Libras</button>
+                <button id="clear">
+                    Limpar
+                </button>
 
             </div>
 
 
-            <div class="footer-column">
+            <div class="cards" id="cards">
 
-                <h4>Acessibilidade</h4>
 
-                <button id="footerContrast">
-                    Alto contraste
-                </button>
+                <!-- MIOPIA -->
 
-                <button id="footerFont">
-                    Configurar fonte
-                </button>
+                <article class="card reveal">
+
+                    <div class="card-icon">
+                        🔍
+                    </div>
+
+                    <h3>
+                        Miopia
+                    </h3>
+
+                    <p>
+                        Dificuldade para enxergar objetos
+                        distantes com nitidez. A imagem tende
+                        a se formar antes da retina.
+                    </p>
+
+                    <span class="tag">
+                        Dificuldade para longe
+                    </span>
+
+                </article>
+
+
+                <!-- HIPERMETROPIA -->
+
+                <article class="card reveal">
+
+                    <div class="card-icon">
+                        📖
+                    </div>
+
+                    <h3>
+                        Hipermetropia
+                    </h3>
+
+                    <p>
+                        Pode causar dificuldade principalmente
+                        para enxergar objetos próximos. A imagem
+                        tende a se formar atrás da retina.
+                    </p>
+
+                    <span class="tag">
+                        Dificuldade para perto
+                    </span>
+
+                </article>
+
+
+                <!-- ASTIGMATISMO -->
+
+                <article class="card reveal">
+
+                    <div class="card-icon">
+                        ✨
+                    </div>
+
+                    <h3>
+                        Astigmatismo
+                    </h3>
+
+                    <p>
+                        Ocorre quando a curvatura da córnea ou
+                        do cristalino não é uniforme, podendo
+                        provocar visão borrada ou distorcida.
+                    </p>
+
+                    <span class="tag">
+                        Distorção visual
+                    </span>
+
+                </article>
+
+
+                <!-- PRESBIOPIA -->
+
+                <article class="card reveal">
+
+                    <div class="card-icon">
+                        👓
+                    </div>
+
+                    <h3>
+                        Presbiopia
+                    </h3>
+
+                    <p>
+                        Está relacionada à redução natural da
+                        capacidade de acomodação do olho ao
+                        longo do envelhecimento.
+                    </p>
+
+                    <span class="tag">
+                        Acomodação
+                    </span>
+
+                </article>
+
+
+                <!-- DALTONISMO -->
+
+                <article class="card reveal">
+
+                    <div class="card-icon">
+                        🎨
+                    </div>
+
+                    <h3>
+                        Daltonismo
+                    </h3>
+
+                    <p>
+                        É uma alteração na percepção de
+                        determinadas cores. Existem diferentes
+                        tipos e graus de daltonismo.
+                    </p>
+
+                    <span class="tag">
+                        Percepção de cores
+                    </span>
+
+                </article>
+
+
+                <!-- CATARATA -->
+
+                <article class="card reveal">
+
+                    <div class="card-icon">
+                        🌫️
+                    </div>
+
+                    <h3>
+                        Catarata
+                    </h3>
+
+                    <p>
+                        Ocorre quando o cristalino fica
+                        progressivamente opaco, podendo
+                        comprometer a nitidez da visão.
+                    </p>
+
+                    <span class="tag">
+                        Cristalino
+                    </span>
+
+                </article>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         DESTAQUE
+    ================================= -->
+
+    <section class="highlight">
+
+        <div class="container">
+
+            <div class="section-title reveal">
+
+                <span>Informação rápida</span>
+
+                <h2>
+                    Cada problema possui características diferentes
+                </h2>
+
+                <p>
+                    Entender a diferença entre as alterações
+                    facilita a compreensão de como a visão funciona.
+                </p>
+
+            </div>
+
+
+            <div class="highlight-grid">
+
+                <div class="highlight-box reveal">
+
+                    <strong>
+                        👁 Refração
+                    </strong>
+
+                    <p>
+                        Miopia, hipermetropia e astigmatismo
+                        estão relacionados à forma como a luz
+                        é focalizada pelo sistema óptico do olho.
+                    </p>
+
+                </div>
+
+
+                <div class="highlight-box reveal">
+
+                    <strong>
+                        👓 Correção
+                    </strong>
+
+                    <p>
+                        Óculos e lentes de contato podem corrigir
+                        diversas alterações refrativas, conforme
+                        orientação de um profissional.
+                    </p>
+
+                </div>
+
+
+                <div class="highlight-box reveal">
+
+                    <strong>
+                        🔬 Avaliação
+                    </strong>
+
+                    <p>
+                        Uma avaliação oftalmológica permite
+                        identificar alterações e orientar
+                        o cuidado adequado.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         COMPARAÇÃO
+    ================================= -->
+
+    <section id="comparacao">
+
+        <div class="container">
+
+            <div class="section-title reveal">
+
+                <span>Compare</span>
+
+                <h2>
+                    Principais diferenças
+                </h2>
+
+                <p>
+                    Uma visão geral das principais características
+                    estudadas.
+                </p>
+
+            </div>
+
+
+            <div class="table-container reveal">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Anomalia
+                            </th>
+
+                            <th>
+                                Principal característica
+                            </th>
+
+                            <th>
+                                Região relacionada
+                            </th>
+
+                            <th>
+                                Correção comum
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                Miopia
+                            </td>
+
+                            <td>
+                                Dificuldade para longe
+                            </td>
+
+                            <td>
+                                Focalização da luz
+                            </td>
+
+                            <td>
+                                Lente divergente
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Hipermetropia
+                            </td>
+
+                            <td>
+                                Dificuldade para perto
+                            </td>
+
+                            <td>
+                                Focalização da luz
+                            </td>
+
+                            <td>
+                                Lente convergente
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Astigmatismo
+                            </td>
+
+                            <td>
+                                Visão distorcida
+                            </td>
+
+                            <td>
+                                Córnea/cristalino
+                            </td>
+
+                            <td>
+                                Lente cilíndrica
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Presbiopia
+                            </td>
+
+                            <td>
+                                Redução da acomodação
+                            </td>
+
+                            <td>
+                                Cristalino
+                            </td>
+
+                            <td>
+                                Lentes corretivas
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         FAQ
+    ================================= -->
+
+    <section
+        id="faq"
+        style="background:#eef5ff;">
+
+        <div class="container">
+
+            <div class="section-title reveal">
+
+                <span>Dúvidas</span>
+
+                <h2>
+                    Perguntas frequentes
+                </h2>
+
+                <p>
+                    Confira algumas perguntas comuns sobre
+                    as anomalias da visão.
+                </p>
+
+            </div>
+
+
+            <div class="faq">
+
+
+                <div class="faq-item reveal">
+
+                    <button class="faq-question">
+
+                        O que é miopia?
+
+                        <span>+</span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        A miopia é uma alteração refrativa em
+                        que objetos distantes podem ser vistos
+                        com menor nitidez.
+
+                    </div>
+
+                </div>
+
+
+                <div class="faq-item reveal">
+
+                    <button class="faq-question">
+
+                        O que é astigmatismo?
+
+                        <span>+</span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        É uma alteração relacionada à curvatura
+                        irregular da córnea ou do cristalino,
+                        podendo causar visão borrada ou distorcida.
+
+                    </div>
+
+                </div>
+
+
+                <div class="faq-item reveal">
+
+                    <button class="faq-question">
+
+                        Óculos corrigem problemas de visão?
+
+                        <span>+</span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        Óculos podem corrigir diversas alterações
+                        refrativas. A prescrição adequada deve
+                        ser determinada por um profissional.
+
+                    </div>
+
+                </div>
+
+
+                <div class="faq-item reveal">
+
+                    <button class="faq-question">
+
+                        É importante consultar um oftalmologista?
+
+                        <span>+</span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        Sim. Avaliações periódicas ajudam a
+                        identificar alterações visuais e permitem
+                        receber orientação adequada.
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+
+    <footer>
+
+        <div class="footer-container">
+
+            <div>
+
+                <h3>
+                    👁 Anomalias da Visão
+                </h3>
+
+                <p>
+                    Um projeto educativo desenvolvido para
+                    apresentar informações sobre a visão humana
+                    de forma simples e organizada.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Navegação
+                </h3>
+
+                <a href="#inicio">
+                    Início
+                </a>
+
+                <a href="#anomalias">
+                    Anomalias
+                </a>
+
+                <a href="#comparacao">
+                    Comparação
+                </a>
+
+                <a href="#faq">
+                    FAQ
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Projeto
+                </h3>
+
+                <p>
+                    Ciências
+                </p>
+
+                <p>
+                    Visão humana
+                </p>
+
+                <p>
+                    Educação
+                </p>
 
             </div>
 
         </div>
 
 
-        <div class="footer-bottom">
+        <div class="copyright">
 
-            <div class="container">
-
-                <span>
-                    © 2026 Anomalias da Visão
-                </span>
-
-                <span>
-                    Projeto educacional
-                </span>
-
-            </div>
+            © <span id="year"></span>
+            Anomalias da Visão — Projeto educacional.
 
         </div>
 
     </footer>
 
 
-    <!-- =========================
-         MODAL
-    ========================== -->
+    <!-- BOTÃO TOPO -->
 
-    <div class="modal" id="infoModal">
-
-        <div class="modal-overlay"></div>
-
-        <div class="modal-box">
-
-            <button class="modal-close" id="modalClose">
-                ×
-            </button>
-
-            <div class="modal-icon">
-                👁
-            </div>
-
-            <span class="modal-tag">
-                ANOMALIA DA VISÃO
-            </span>
-
-            <h2 id="modalTitle">
-                Miopia
-            </h2>
-
-            <p id="modalText">
-                Informação.
-            </p>
-
-            <div class="modal-warning">
-                <strong>Importante</strong>
-                <span>
-                    Este conteúdo é educativo e não substitui
-                    uma avaliação realizada por um profissional
-                    de saúde.
-                </span>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         PAINEL LIBRAS
-    ========================== -->
-
-    <div class="libras-panel" id="librasPanel">
-
-        <div class="libras-header">
-
-            <div>
-                <strong>Acessibilidade em Libras</strong>
-                <small>Intérprete virtual</small>
-            </div>
-
-            <button id="closeLibras">
-                ×
-            </button>
-
-        </div>
-
-        <div class="libras-video">
-
-            <div class="libras-avatar">
-                🤟
-            </div>
-
-            <div>
-                <strong>VLibras</strong>
-                <p>
-                    Ative o recurso de Libras para auxiliar
-                    na interpretação do conteúdo.
-                </p>
-            </div>
-
-        </div>
-
-        <a
-            href="https://www.gov.br/governodigital/pt-br/vlibras"
-            target="_blank"
-            rel="noopener"
-            class="libras-link">
-            Abrir recurso VLibras →
-        </a>
-
-    </div>
-
-
-    <!-- =========================
-         BOTÃO VOLTAR AO TOPO
-    ========================== -->
-
-    <button class="back-top" id="backTop">
+    <button id="topButton">
         ↑
     </button>
 
 
-    <script src="script.js"></script>
+    <!-- ================================
+         JAVASCRIPT
+    ================================= -->
+
+    <script>
+
+        /* =================================
+           ANO
+        ================================= */
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+
+        /* =================================
+           FAQ
+        ================================= */
+
+        const faqQuestions =
+            document.querySelectorAll(".faq-question");
+
+        faqQuestions.forEach(question => {
+
+            question.addEventListener("click", () => {
+
+                const item =
+                    question.parentElement;
+
+                item.classList.toggle("open");
+
+            });
+
+        });
+
+
+        /* =================================
+           BOTÃO TOPO
+        ================================= */
+
+        const topButton =
+            document.getElementById("topButton");
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 500) {
+
+                topButton.classList.add("show");
+
+            } else {
+
+                topButton.classList.remove("show");
+
+            }
+
+        });
+
+
+        topButton.addEventListener("click", () => {
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: "smooth"
+
+            });
+
+        });
+
+
+        /* =================================
+           PESQUISA
+        ================================= */
+
+        const search =
+            document.getElementById("search");
+
+        const clear =
+            document.getElementById("clear");
+
+        const cards =
+            document.querySelectorAll(".card");
+
+
+        search.addEventListener("input", () => {
+
+            const value =
+                search.value
+                .toLowerCase()
+                .trim();
+
+
+            cards.forEach(card => {
+
+                const text =
+                    card.textContent
+                    .toLowerCase();
+
+
+                if (text.includes(value)) {
+
+                    card.style.display = "";
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+        });
+
+
+        clear.addEventListener("click", () => {
+
+            search.value = "";
+
+            cards.forEach(card => {
+
+                card.style.display = "";
+
+            });
+
+            search.focus();
+
+        });
+
+
+        /* =================================
+           MODO ESCURO
+        ================================= */
+
+        const dark =
+            document.getElementById("dark");
+
+
+        dark.addEventListener("click", () => {
+
+            document.body.classList.toggle("dark");
+
+            if (
+                document.body.classList.contains("dark")
+            ) {
+
+                localStorage.setItem(
+                    "darkMode",
+                    "true"
+                );
+
+            } else {
+
+                localStorage.setItem(
+                    "darkMode",
+                    "false"
+                );
+
+            }
+
+        });
+
+
+        if (
+            localStorage.getItem("darkMode")
+            === "true"
+        ) {
+
+            document.body.classList.add("dark");
+
+        }
+
+
+        /* =================================
+           AUMENTAR TEXTO
+        ================================= */
+
+        const larger =
+            document.getElementById("larger");
+
+        const smaller =
+            document.getElementById("smaller");
+
+        let textSize = 16;
+
+
+        larger.addEventListener("click", () => {
+
+            if (textSize < 22) {
+
+                textSize++;
+
+                document.body.style.fontSize =
+                    textSize + "px";
+
+            }
+
+        });
+
+
+        smaller.addEventListener("click", () => {
+
+            if (textSize > 13) {
+
+                textSize--;
+
+                document.body.style.fontSize =
+                    textSize + "px";
+
+            }
+
+        });
+
+
+        /* =================================
+           MUDAR FONTE
+        ================================= */
+
+        const font =
+            document.getElementById("font");
+
+
+        const fonts = [
+
+            "Arial, sans-serif",
+
+            "Georgia, serif",
+
+            "Verdana, sans-serif",
+
+            "'Trebuchet MS', sans-serif",
+
+            "'Courier New', monospace"
+
+        ];
+
+
+        let currentFont = 0;
+
+
+        font.addEventListener("click", () => {
+
+            currentFont++;
+
+            if (
+                currentFont >= fonts.length
+            ) {
+
+                currentFont = 0;
+
+            }
+
+
+            document.body.style.fontFamily =
+                fonts[currentFont];
+
+
+            localStorage.setItem(
+                "font",
+                currentFont
+            );
+
+        });
+
+
+        const savedFont =
+            localStorage.getItem("font");
+
+
+        if (savedFont !== null) {
+
+            currentFont =
+                Number(savedFont);
+
+            document.body.style.fontFamily =
+                fonts[currentFont];
+
+        }
+
+
+        /* =================================
+           ANIMAÇÕES
+        ================================= */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+
+        const observer =
+            new IntersectionObserver(
+
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target.classList.add(
+                                "visible"
+                            );
+
+                        }
+
+                    });
+
+                },
+
+                {
+                    threshold: 0.12
+                }
+
+            );
+
+
+        revealElements.forEach(element => {
+
+            observer.observe(element);
+
+        });
+
+
+        /* =================================
+           MENU ATIVO
+        ================================= */
+
+        const sections =
+            document.querySelectorAll("section[id]");
+
+        const menuLinks =
+            document.querySelectorAll("nav a");
+
+
+        window.addEventListener("scroll", () => {
+
+            let current = "";
+
+
+            sections.forEach(section => {
+
+                const top =
+                    section.offsetTop - 150;
+
+
+                if (
+                    window.scrollY >= top
+                ) {
+
+                    current =
+                        section.getAttribute("id");
+
+                }
+
+            });
+
+
+            menuLinks.forEach(link => {
+
+                link.classList.remove("active");
+
+
+                if (
+                    link.getAttribute("href")
+                    === "#" + current
+                ) {
+
+                    link.classList.add("active");
+
+                }
+
+            });
+
+        });
+
+
+        /* =================================
+           MENSAGEM NO CONSOLE
+        ================================= */
+
+        console.log(
+            "Anomalias da Visão carregado com sucesso!"
+        );
+
+    </script>
 
 </body>
+
 </html>
 ```
