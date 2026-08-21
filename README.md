@@ -1,0 +1,1 @@
+# anomalias-da-visao-ft-2.0
