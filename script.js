@@ -1,1253 +1,672 @@
-```javascript
-/* =========================================================
-   VISÃO EM FOCO
-   SCRIPT.JS
-   ========================================================= */
+/* =========================================
+   ANOMALIAS DA VISÃO
+   JAVASCRIPT PRINCIPAL
+========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =====================================================
-       ELEMENTOS PRINCIPAIS
-       ===================================================== */
+    /* =========================================
+       1. MENU / NAVEGAÇÃO
+    ========================================= */
 
-    const body = document.body;
+    const navLinks = document.querySelectorAll("nav a");
 
-    const menuButton =
-        document.querySelector(".menu-button");
+    navLinks.forEach(link => {
+        link.addEventListener("click", function () {
 
-    const navigation =
-        document.querySelector(".navigation");
+            navLinks.forEach(item => {
+                item.classList.remove("active");
+            });
 
-    const progressBar =
-        document.querySelector(".scroll-progress");
-
-    const accessibilityButton =
-        document.querySelector("#accessibilityButton");
-
-    const accessibilityPanel =
-        document.querySelector(".accessibility-panel");
-
-    const closePanel =
-        document.querySelector(".close-panel");
-
-    const librasButton =
-        document.querySelector("#librasButton");
-
-    const librasModal =
-        document.querySelector("#librasModal");
-
-    const closeModal =
-        document.querySelector(".close-modal");
+            this.classList.add("active");
+        });
+    });
 
 
-    /* =====================================================
-       MENU MOBILE
-       ===================================================== */
+    /* =========================================
+       2. SCROLL SUAVE
+    ========================================= */
 
-    if (menuButton && navigation) {
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
 
-        menuButton.addEventListener("click", () => {
+        link.addEventListener("click", function (event) {
 
-            navigation.classList.toggle("open");
+            const targetId = this.getAttribute("href");
 
-            const opened =
-                navigation.classList.contains("open");
+            if (targetId === "#") return;
 
-            menuButton.setAttribute(
-                "aria-expanded",
-                opened
+            const target = document.querySelector(targetId);
+
+            if (target) {
+                event.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+
+        });
+
+    });
+
+
+    /* =========================================
+       3. BOTÃO VOLTAR AO TOPO
+    ========================================= */
+
+    let backToTop = document.getElementById("backToTop");
+
+    if (!backToTop) {
+
+        backToTop = document.createElement("button");
+
+        backToTop.id = "backToTop";
+        backToTop.innerHTML = "↑";
+        backToTop.setAttribute("aria-label", "Voltar ao topo");
+
+        document.body.appendChild(backToTop);
+    }
+
+    window.addEventListener("scroll", () => {
+
+        if (window.scrollY > 500) {
+            backToTop.classList.add("show");
+        } else {
+            backToTop.classList.remove("show");
+        }
+
+    });
+
+    backToTop.addEventListener("click", () => {
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+
+    /* =========================================
+       4. FAQ
+    ========================================= */
+
+    const faqQuestions = document.querySelectorAll(".faq-question");
+
+    faqQuestions.forEach(question => {
+
+        question.addEventListener("click", () => {
+
+            const item = question.parentElement;
+            const answer = item.querySelector(".faq-answer");
+
+            const isOpen = item.classList.contains("open");
+
+            document.querySelectorAll(".faq-item").forEach(otherItem => {
+
+                otherItem.classList.remove("open");
+
+                const otherAnswer =
+                    otherItem.querySelector(".faq-answer");
+
+                if (otherAnswer) {
+                    otherAnswer.style.maxHeight = null;
+                    otherAnswer.style.paddingBottom = "0";
+                }
+
+            });
+
+            if (!isOpen) {
+
+                item.classList.add("open");
+
+                if (answer) {
+
+                    answer.style.maxHeight =
+                        answer.scrollHeight + "px";
+
+                    answer.style.paddingBottom = "20px";
+                }
+
+            }
+
+        });
+
+    });
+
+
+    /* =========================================
+       5. ANIMAÇÃO AO ENTRAR NA TELA
+    ========================================= */
+
+    const animatedElements = document.querySelectorAll(
+        ".card, .info-box, .section-header, .table-wrapper"
+    );
+
+    const observer = new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("fade-in");
+
+                    observer.unobserve(entry.target);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+    animatedElements.forEach(element => {
+        observer.observe(element);
+    });
+
+
+    /* =========================================
+       6. ANO AUTOMÁTICO NO FOOTER
+    ========================================= */
+
+    const yearElements = document.querySelectorAll(".current-year");
+
+    yearElements.forEach(element => {
+        element.textContent = new Date().getFullYear();
+    });
+
+
+    /* =========================================
+       7. CONTADOR DE CARDS
+    ========================================= */
+
+    const counters = document.querySelectorAll("[data-counter]");
+
+    const counterObserver = new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (!entry.isIntersecting) return;
+
+                const counter = entry.target;
+                const target = Number(counter.dataset.counter);
+
+                let current = 0;
+
+                const duration = 1200;
+                const increment = target / (duration / 16);
+
+                const updateCounter = () => {
+
+                    current += increment;
+
+                    if (current < target) {
+
+                        counter.textContent =
+                            Math.floor(current);
+
+                        requestAnimationFrame(updateCounter);
+
+                    } else {
+
+                        counter.textContent = target;
+                    }
+
+                };
+
+                updateCounter();
+
+                counterObserver.unobserve(counter);
+            });
+
+        },
+        {
+            threshold: 0.5
+        }
+    );
+
+    counters.forEach(counter => {
+        counterObserver.observe(counter);
+    });
+
+
+    /* =========================================
+       8. INDICADOR DE PROGRESSO DA PÁGINA
+    ========================================= */
+
+    const progressBar = document.createElement("div");
+
+    progressBar.id = "readingProgress";
+
+    progressBar.style.position = "fixed";
+    progressBar.style.top = "0";
+    progressBar.style.left = "0";
+    progressBar.style.height = "3px";
+    progressBar.style.width = "0%";
+    progressBar.style.background =
+        "linear-gradient(90deg, #1769e0, #54a9ff)";
+    progressBar.style.zIndex = "9999";
+    progressBar.style.transition = "width 0.1s linear";
+
+    document.body.appendChild(progressBar);
+
+    window.addEventListener("scroll", () => {
+
+        const scrollTop = window.scrollY;
+
+        const pageHeight =
+            document.documentElement.scrollHeight -
+            document.documentElement.clientHeight;
+
+        const percentage =
+            (scrollTop / pageHeight) * 100;
+
+        progressBar.style.width =
+            percentage + "%";
+
+    });
+
+
+    /* =========================================
+       9. TROCA DE FONTE
+    ========================================= */
+
+    const fonts = [
+        "Inter",
+        "Poppins",
+        "Arial",
+        "Georgia",
+        "Verdana"
+    ];
+
+    let currentFont = 0;
+
+    const fontButton =
+        document.getElementById("fontButton");
+
+    if (fontButton) {
+
+        fontButton.addEventListener("click", () => {
+
+            currentFont++;
+
+            if (currentFont >= fonts.length) {
+                currentFont = 0;
+            }
+
+            document.body.style.fontFamily =
+                fonts[currentFont];
+
+            localStorage.setItem(
+                "siteFont",
+                fonts[currentFont]
             );
 
         });
 
     }
 
+    const savedFont =
+        localStorage.getItem("siteFont");
 
-    /* Fecha o menu quando clicar em um link */
+    if (savedFont) {
+        document.body.style.fontFamily = savedFont;
+    }
 
-    document
-        .querySelectorAll(".navigation a")
-        .forEach(link => {
 
-            link.addEventListener("click", () => {
+    /* =========================================
+       10. TAMANHO DA FONTE
+    ========================================= */
 
-                navigation?.classList.remove("open");
+    let fontSize = 16;
 
-                menuButton?.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
+    const increaseFont =
+        document.getElementById("increaseFont");
+
+    const decreaseFont =
+        document.getElementById("decreaseFont");
+
+    if (increaseFont) {
+
+        increaseFont.addEventListener("click", () => {
+
+            if (fontSize < 22) {
+
+                fontSize += 1;
+
+                document.body.style.fontSize =
+                    fontSize + "px";
+            }
+
+        });
+
+    }
+
+    if (decreaseFont) {
+
+        decreaseFont.addEventListener("click", () => {
+
+            if (fontSize > 13) {
+
+                fontSize -= 1;
+
+                document.body.style.fontSize =
+                    fontSize + "px";
+            }
+
+        });
+
+    }
+
+
+    /* =========================================
+       11. MODO ESCURO
+    ========================================= */
+
+    const darkButton =
+        document.getElementById("darkMode");
+
+    if (darkButton) {
+
+        darkButton.addEventListener("click", () => {
+
+            document.body.classList.toggle("dark-mode");
+
+            const enabled =
+                document.body.classList.contains("dark-mode");
+
+            localStorage.setItem(
+                "darkMode",
+                enabled ? "true" : "false"
+            );
+
+        });
+
+    }
+
+    if (
+        localStorage.getItem("darkMode") === "true"
+    ) {
+
+        document.body.classList.add("dark-mode");
+    }
+
+
+    /* =========================================
+       12. PESQUISA NO SITE
+    ========================================= */
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    const searchableElements =
+        document.querySelectorAll(
+            ".card, .info-box, .faq-item"
+        );
+
+    if (searchInput) {
+
+        searchInput.addEventListener("input", () => {
+
+            const search =
+                searchInput.value
+                    .toLowerCase()
+                    .trim();
+
+            searchableElements.forEach(element => {
+
+                const text =
+                    element.textContent.toLowerCase();
+
+                if (text.includes(search)) {
+
+                    element.style.display = "";
+
+                } else {
+
+                    element.style.display = "none";
+                }
 
             });
 
         });
 
-
-    /* =====================================================
-       BARRA DE PROGRESSO
-       ===================================================== */
-
-    function updateScrollProgress() {
-
-        if (!progressBar) return;
-
-        const scrollTop =
-            window.scrollY;
-
-        const documentHeight =
-            document.documentElement.scrollHeight
-            - window.innerHeight;
-
-        if (documentHeight <= 0) {
-
-            progressBar.style.width = "0%";
-
-            return;
-        }
-
-        const percentage =
-            (scrollTop / documentHeight) * 100;
-
-        progressBar.style.width =
-            `${Math.min(100, percentage)}%`;
-
     }
 
-    window.addEventListener(
-        "scroll",
-        updateScrollProgress,
-        { passive: true }
-    );
 
-    updateScrollProgress();
+    /* =========================================
+       13. BOTÃO DE LIMPAR PESQUISA
+    ========================================= */
 
+    const clearSearch =
+        document.getElementById("clearSearch");
 
-    /* =====================================================
-       ANIMAÇÕES DE ENTRADA
-       ===================================================== */
+    if (clearSearch && searchInput) {
 
-    const revealElements =
-        document.querySelectorAll(".reveal");
+        clearSearch.addEventListener("click", () => {
 
-    if ("IntersectionObserver" in window) {
+            searchInput.value = "";
 
-        const revealObserver =
-            new IntersectionObserver(
-                entries => {
+            searchableElements.forEach(element => {
+                element.style.display = "";
+            });
 
-                    entries.forEach(entry => {
-
-                        if (entry.isIntersecting) {
-
-                            entry.target
-                                .classList
-                                .add("visible");
-
-                            revealObserver
-                                .unobserve(entry.target);
-
-                        }
-
-                    });
-
-                },
-                {
-                    threshold: 0.12
-                }
-            );
-
-        revealElements.forEach(element => {
-
-            revealObserver.observe(element);
-
-        });
-
-    } else {
-
-        revealElements.forEach(element => {
-
-            element.classList.add("visible");
-
+            searchInput.focus();
         });
 
     }
 
 
-    /* =====================================================
-       ACESSIBILIDADE — PAINEL
-       ===================================================== */
+    /* =========================================
+       14. ALERTA DE COPIAR TEXTO
+    ========================================= */
 
-    function openAccessibility() {
+    const copyButtons =
+        document.querySelectorAll("[data-copy]");
 
-        if (!accessibilityPanel) return;
+    copyButtons.forEach(button => {
 
-        accessibilityPanel
-            .classList
-            .add("open");
+        button.addEventListener("click", async () => {
 
-        accessibilityPanel
-            .setAttribute(
-                "aria-hidden",
-                "false"
-            );
+            const text =
+                button.dataset.copy;
 
-    }
+            try {
 
+                await navigator.clipboard.writeText(text);
 
-    function closeAccessibility() {
+                const original =
+                    button.textContent;
 
-        if (!accessibilityPanel) return;
+                button.textContent = "Copiado!";
 
-        accessibilityPanel
-            .classList
-            .remove("open");
+                setTimeout(() => {
+                    button.textContent = original;
+                }, 1500);
 
-        accessibilityPanel
-            .setAttribute(
-                "aria-hidden",
-                "true"
-            );
+            } catch (error) {
 
-    }
-
-
-    if (accessibilityButton) {
-
-        accessibilityButton.addEventListener(
-            "click",
-            openAccessibility
-        );
-
-    }
-
-
-    if (closePanel) {
-
-        closePanel.addEventListener(
-            "click",
-            closeAccessibility
-        );
-
-    }
-
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (event.key === "Escape") {
-
-                closeAccessibility();
-
-                closeLibrasModal();
-
-            }
-
-        }
-    );
-
-
-    /* =====================================================
-       TAMANHO DA FONTE
-       ===================================================== */
-
-    let fontScale =
-        Number(
-            localStorage.getItem(
-                "visaoFonteEscala"
-            )
-        ) || 1;
-
-    function applyFontScale() {
-
-        document.documentElement.style
-            .fontSize =
-            `${16 * fontScale}px`;
-
-    }
-
-    applyFontScale();
-
-
-    const increaseFont =
-        document.querySelector("#increaseFont");
-
-    const decreaseFont =
-        document.querySelector("#decreaseFont");
-
-    const resetFont =
-        document.querySelector("#resetFont");
-
-
-    if (increaseFont) {
-
-        increaseFont.addEventListener(
-            "click",
-            () => {
-
-                fontScale =
-                    Math.min(
-                        1.35,
-                        fontScale + 0.05
-                    );
-
-                localStorage.setItem(
-                    "visaoFonteEscala",
-                    fontScale
-                );
-
-                applyFontScale();
-
-            }
-        );
-
-    }
-
-
-    if (decreaseFont) {
-
-        decreaseFont.addEventListener(
-            "click",
-            () => {
-
-                fontScale =
-                    Math.max(
-                        0.85,
-                        fontScale - 0.05
-                    );
-
-                localStorage.setItem(
-                    "visaoFonteEscala",
-                    fontScale
-                );
-
-                applyFontScale();
-
-            }
-        );
-
-    }
-
-
-    if (resetFont) {
-
-        resetFont.addEventListener(
-            "click",
-            () => {
-
-                fontScale = 1;
-
-                localStorage.setItem(
-                    "visaoFonteEscala",
-                    fontScale
-                );
-
-                applyFontScale();
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       FONTE ACESSÍVEL
-       ===================================================== */
-
-    const readableFont =
-        document.querySelector("#readableFont");
-
-    let readable =
-        localStorage.getItem(
-            "visaoFonteLegivel"
-        ) === "true";
-
-    if (readable) {
-
-        body.classList.add(
-            "readable-font"
-        );
-
-    }
-
-
-    if (readableFont) {
-
-        readableFont.addEventListener(
-            "click",
-            () => {
-
-                readable =
-                    !readable;
-
-                body.classList.toggle(
-                    "readable-font",
-                    readable
-                );
-
-                localStorage.setItem(
-                    "visaoFonteLegivel",
-                    readable
+                console.log(
+                    "Não foi possível copiar."
                 );
 
             }
-        );
-
-    }
-
-
-    /* =====================================================
-       ALTO CONTRASTE
-       ===================================================== */
-
-    const contrastButton =
-        document.querySelector("#highContrast");
-
-    let highContrast =
-        localStorage.getItem(
-            "visaoAltoContraste"
-        ) === "true";
-
-
-    if (highContrast) {
-
-        body.classList.add(
-            "high-contrast"
-        );
-
-    }
-
-
-    if (contrastButton) {
-
-        contrastButton.addEventListener(
-            "click",
-            () => {
-
-                highContrast =
-                    !highContrast;
-
-                body.classList.toggle(
-                    "high-contrast",
-                    highContrast
-                );
-
-                localStorage.setItem(
-                    "visaoAltoContraste",
-                    highContrast
-                );
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       ANATOMIA DO OLHO
-       ===================================================== */
-
-    const partButtons =
-        document.querySelectorAll(
-            ".part-button"
-        );
-
-    const informationNumber =
-        document.querySelector(
-            ".information-number"
-        );
-
-    const informationLabel =
-        document.querySelector(
-            ".information-label"
-        );
-
-    const informationTitle =
-        document.querySelector(
-            ".anatomy-information h3"
-        );
-
-    const informationText =
-        document.querySelector(
-            ".anatomy-information > p"
-        );
-
-
-    const eyeParts = {
-
-        cornea: {
-
-            number: "01",
-
-            label: "ESTRUTURA EXTERNA",
-
-            title: "Córnea",
-
-            text:
-                "A córnea é a camada transparente localizada na parte frontal do olho. Ela ajuda a proteger as estruturas internas e participa diretamente da focalização da luz."
-
-        },
-
-        iris: {
-
-            number: "02",
-
-            label: "CONTROLE DA LUZ",
-
-            title: "Íris",
-
-            text:
-                "A íris é a região colorida do olho. Ela controla a quantidade de luz que entra no olho por meio da abertura chamada pupila."
-
-        },
-
-        retina: {
-
-            number: "03",
-
-            label: "CAPTAÇÃO DA IMAGEM",
-
-            title: "Retina",
-
-            text:
-                "A retina fica na parte posterior do olho e contém células sensíveis à luz. Ela transforma os estímulos luminosos em sinais que seguem pelo nervo óptico."
-
-        },
-
-        lens: {
-
-            number: "04",
-
-            label: "FOCALIZAÇÃO",
-
-            title: "Cristalino",
-
-            text:
-                "O cristalino é uma estrutura transparente que muda sua forma para ajudar o olho a focalizar objetos que estão em diferentes distâncias."
-
-        }
-
-    };
-
-
-    function updateEyePart(part) {
-
-        const data =
-            eyeParts[part];
-
-        if (!data) return;
-
-        if (informationNumber)
-            informationNumber.textContent =
-                data.number;
-
-        if (informationLabel)
-            informationLabel.textContent =
-                data.label;
-
-        if (informationTitle)
-            informationTitle.textContent =
-                data.title;
-
-        if (informationText)
-            informationText.textContent =
-                data.text;
-
-        partButtons.forEach(button => {
-
-            button.classList.toggle(
-                "active",
-                button.dataset.part === part
-            );
 
         });
-
-    }
-
-
-    partButtons.forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                updateEyePart(
-                    button.dataset.part
-                );
-
-            }
-        );
 
     });
 
 
-    /* Pontos do olho */
+    /* =========================================
+       15. LAZY LOAD DE IMAGENS
+    ========================================= */
 
-    document
-        .querySelectorAll(".eye-point")
-        .forEach(point => {
+    const images =
+        document.querySelectorAll("img[data-src]");
 
-            point.addEventListener(
-                "click",
-                () => {
+    const imageObserver =
+        new IntersectionObserver(
+            entries => {
 
-                    const part =
-                        point.dataset.part;
+                entries.forEach(entry => {
 
-                    if (part) {
+                    if (!entry.isIntersecting) return;
 
-                        updateEyePart(part);
+                    const image = entry.target;
 
-                    }
+                    image.src =
+                        image.dataset.src;
 
-                }
-            );
+                    image.removeAttribute("data-src");
 
-        });
+                    imageObserver.unobserve(image);
 
-
-    /* =====================================================
-       ANOMALIAS DA VISÃO
-       ===================================================== */
-
-    const anomalyCards =
-        document.querySelectorAll(
-            ".anomaly-card"
-        );
-
-    const detailTitle =
-        document.querySelector(
-            ".detail-content h3"
-        );
-
-    const detailText =
-        document.querySelector(
-            ".detail-content p"
-        );
-
-
-    const anomalyData = {
-
-        miopia: {
-
-            title: "Miopia",
-
-            text:
-                "Na miopia, objetos próximos costumam ser vistos com mais nitidez enquanto objetos distantes podem ficar desfocados. Isso acontece quando o sistema óptico do olho faz a imagem se formar antes da retina."
-
-        },
-
-        hipermetropia: {
-
-            title: "Hipermetropia",
-
-            text:
-                "Na hipermetropia, a focalização pode ocorrer além da retina. Dependendo do grau e da idade, isso pode dificultar principalmente a visão de objetos próximos."
-
-        },
-
-        astigmatismo: {
-
-            title: "Astigmatismo",
-
-            text:
-                "O astigmatismo está relacionado a uma curvatura irregular da córnea ou do cristalino, podendo causar diferentes níveis de desfoque ou distorção visual."
-
-        },
-
-        presbiopia: {
-
-            title: "Presbiopia",
-
-            text:
-                "A presbiopia está relacionada às mudanças naturais na capacidade de acomodação do olho ao longo do envelhecimento, dificultando a focalização de objetos próximos."
-
-        },
-
-        catarata: {
-
-            title: "Catarata",
-
-            text:
-                "A catarata ocorre quando o cristalino perde sua transparência. A visão pode ficar embaçada e com menor contraste."
-
-        },
-
-        daltonismo: {
-
-            title: "Daltonismo",
-
-            text:
-                "O daltonismo envolve diferenças na percepção de determinadas cores. Existem diferentes tipos e intensidades de alterações na visão das cores."
-
-        }
-
-    };
-
-
-    anomalyCards.forEach(card => {
-
-        card.addEventListener(
-            "click",
-            () => {
-
-                const anomaly =
-                    card.dataset.anomaly;
-
-                const data =
-                    anomalyData[anomaly];
-
-                if (!data) return;
-
-                anomalyCards.forEach(item => {
-
-                    item.classList.remove(
-                        "selected"
-                    );
-
-                });
-
-                card.classList.add(
-                    "selected"
-                );
-
-                if (detailTitle)
-                    detailTitle.textContent =
-                        data.title;
-
-                if (detailText)
-                    detailText.textContent =
-                        data.text;
-
-            }
-        );
-
-    });
-
-
-    /* =====================================================
-       LABORATÓRIO DE VISÃO
-       ===================================================== */
-
-    const visionSelect =
-        document.querySelector(
-            "#visionCondition"
-        );
-
-    const intensityRange =
-        document.querySelector(
-            "#intensityRange"
-        );
-
-    const intensityValue =
-        document.querySelector(
-            "#intensityValue"
-        );
-
-    const visionPreview =
-        document.querySelector(
-            ".vision-preview"
-        );
-
-    const previewName =
-        document.querySelector(
-            "#previewName"
-        );
-
-
-    function updateVisionSimulation() {
-
-        if (!visionPreview) return;
-
-        const condition =
-            visionSelect
-                ? visionSelect.value
-                : "normal";
-
-        const intensity =
-            intensityRange
-                ? Number(
-                    intensityRange.value
-                )
-                : 0;
-
-
-        const filterClasses = [
-
-            "filter-miopia",
-            "filter-hipermetropia",
-            "filter-astigmatismo",
-            "filter-presbiopia",
-            "filter-catarata",
-            "filter-daltonismo"
-
-        ];
-
-
-        filterClasses.forEach(
-            className => {
-
-                visionPreview
-                    .classList
-                    .remove(className);
-
-            }
-        );
-
-
-        if (condition !== "normal") {
-
-            visionPreview
-                .classList
-                .add(
-                    `filter-${condition}`
-                );
-
-        }
-
-
-        const blurAmount =
-            intensity / 100;
-
-
-        if (condition === "miopia") {
-
-            visionPreview.style.filter =
-                `blur(${blurAmount * 7}px)`;
-
-        } else if (
-            condition === "hipermetropia"
-        ) {
-
-            visionPreview.style.filter =
-                `blur(${blurAmount * 4}px)`;
-
-        } else if (
-            condition === "astigmatismo"
-        ) {
-
-            visionPreview.style.filter =
-                `blur(${blurAmount * 5}px)`;
-
-        } else if (
-            condition === "presbiopia"
-        ) {
-
-            visionPreview.style.filter =
-                `blur(${blurAmount * 4}px)`;
-
-        } else if (
-            condition === "catarata"
-        ) {
-
-            visionPreview.style.filter =
-                `
-                blur(${blurAmount * 8}px)
-                brightness(${1 + blurAmount * .25})
-                saturate(${1 - blurAmount * .45})
-                `;
-
-        } else if (
-            condition === "daltonismo"
-        ) {
-
-            visionPreview.style.filter =
-                `
-                saturate(${1 - blurAmount * .7})
-                contrast(${1 + blurAmount * .08})
-                `;
-
-        } else {
-
-            visionPreview.style.filter =
-                "none";
-
-        }
-
-
-        if (intensityValue) {
-
-            intensityValue.textContent =
-                `${intensity}%`;
-
-        }
-
-
-        if (previewName) {
-
-            const names = {
-
-                normal: "Visão normal",
-                miopia: "Miopia",
-                hipermetropia:
-                    "Hipermetropia",
-                astigmatismo:
-                    "Astigmatismo",
-                presbiopia:
-                    "Presbiopia",
-                catarata:
-                    "Catarata",
-                daltonismo:
-                    "Daltonismo"
-
-            };
-
-            previewName.textContent =
-                names[condition]
-                || "Visão normal";
-
-        }
-
-    }
-
-
-    if (visionSelect) {
-
-        visionSelect.addEventListener(
-            "change",
-            updateVisionSimulation
-        );
-
-    }
-
-
-    if (intensityRange) {
-
-        intensityRange.addEventListener(
-            "input",
-            updateVisionSimulation
-        );
-
-    }
-
-
-    updateVisionSimulation();
-
-
-    /* =====================================================
-       QUIZ
-       ===================================================== */
-
-    const quizForm =
-        document.querySelector(
-            "#quizForm"
-        );
-
-    const scoreElement =
-        document.querySelector(
-            "#quizScore"
-        );
-
-    const resultElement =
-        document.querySelector(
-            "#quizResult"
-        );
-
-
-    if (quizForm) {
-
-        quizForm.addEventListener(
-            "submit",
-            event => {
-
-                event.preventDefault();
-
-
-                const correctAnswers = {
-
-                    q1: "a",
-                    q2: "b",
-                    q3: "c",
-                    q4: "a",
-                    q5: "b"
-
-                };
-
-
-                let score = 0;
-
-                let answered = 0;
-
-
-                Object.entries(
-                    correctAnswers
-                ).forEach(
-                    ([question, answer]) => {
-
-                        const selected =
-                            quizForm.querySelector(
-                                `input[name="${question}"]:checked`
-                            );
-
-                        if (selected) {
-
-                            answered++;
-
-                            if (
-                                selected.value ===
-                                answer
-                            ) {
-
-                                score++;
-
-                            }
-
-                        }
-
-                    }
-                );
-
-
-                if (scoreElement) {
-
-                    scoreElement.textContent =
-                        score;
-
-                }
-
-
-                if (resultElement) {
-
-                    if (answered === 0) {
-
-                        resultElement.textContent =
-                            "Responda às questões para descobrir sua pontuação.";
-
-                    } else if (score === 5) {
-
-                        resultElement.textContent =
-                            "Excelente! Você domina o conteúdo.";
-
-                    } else if (score >= 3) {
-
-                        resultElement.textContent =
-                            "Muito bem! Você já conhece bastante sobre o assunto.";
-
-                    } else {
-
-                        resultElement.textContent =
-                            "Bom começo! Revise os conteúdos e tente novamente.";
-
-                    }
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       LIBRAS
-       ===================================================== */
-
-    function openLibrasModal() {
-
-        if (!librasModal) return;
-
-        librasModal.classList.add(
-            "open"
-        );
-
-        librasModal.setAttribute(
-            "aria-hidden",
-            "false"
-        );
-
-        body.style.overflow =
-            "hidden";
-
-    }
-
-
-    function closeLibrasModal() {
-
-        if (!librasModal) return;
-
-        librasModal.classList.remove(
-            "open"
-        );
-
-        librasModal.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-        body.style.overflow =
-            "";
-
-    }
-
-
-    if (librasButton) {
-
-        librasButton.addEventListener(
-            "click",
-            openLibrasModal
-        );
-
-    }
-
-
-    if (closeModal) {
-
-        closeModal.addEventListener(
-            "click",
-            closeLibrasModal
-        );
-
-    }
-
-
-    if (librasModal) {
-
-        librasModal.addEventListener(
-            "click",
-            event => {
-
-                if (
-                    event.target ===
-                    librasModal
-                ) {
-
-                    closeLibrasModal();
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       BOTÕES DE NAVEGAÇÃO
-       ===================================================== */
-
-    document
-        .querySelectorAll(
-            '[data-scroll]'
-        )
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    const targetId =
-                        button.dataset.scroll;
-
-                    const target =
-                        document.getElementById(
-                            targetId
-                        );
-
-                    if (!target) return;
-
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-
-                }
-            );
-
-        });
-
-
-    /* =====================================================
-       ATALHO HOME
-       ===================================================== */
-
-    const homeButton =
-        document.querySelector(
-            ".logo"
-        );
-
-    if (homeButton) {
-
-        homeButton.addEventListener(
-            "click",
-            event => {
-
-                event.preventDefault();
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
                 });
 
             }
         );
 
-    }
+    images.forEach(image => {
+        imageObserver.observe(image);
+    });
 
 
-    /* =====================================================
-       FECHAR PAINEL AO CLICAR FORA
-       ===================================================== */
+    /* =========================================
+       16. ATUALIZA MENU CONFORME O SCROLL
+    ========================================= */
 
-    document.addEventListener(
-        "click",
-        event => {
+    const sections =
+        document.querySelectorAll("section[id]");
 
-            if (!accessibilityPanel) return;
+    window.addEventListener("scroll", () => {
 
-            const clickedInside =
-                accessibilityPanel.contains(
-                    event.target
-                );
+        let currentSection = "";
 
-            const clickedButton =
-                accessibilityButton &&
-                accessibilityButton.contains(
-                    event.target
-                );
+        sections.forEach(section => {
+
+            const sectionTop =
+                section.offsetTop - 150;
+
+            if (window.scrollY >= sectionTop) {
+
+                currentSection =
+                    section.getAttribute("id");
+            }
+
+        });
+
+        navLinks.forEach(link => {
+
+            link.classList.remove("active");
+
+            const href =
+                link.getAttribute("href");
 
             if (
-                accessibilityPanel.classList.contains(
-                    "open"
-                ) &&
-                !clickedInside &&
-                !clickedButton
+                href === "#" + currentSection
             ) {
 
-                closeAccessibility();
-
+                link.classList.add("active");
             }
-
-        }
-    );
-
-
-    /* =====================================================
-       DATA / ANO AUTOMÁTICO
-       ===================================================== */
-
-    document
-        .querySelectorAll(
-            "[data-current-year]"
-        )
-        .forEach(element => {
-
-            element.textContent =
-                new Date()
-                    .getFullYear();
 
         });
 
+    });
 
-    /* =====================================================
-       INICIALIZAÇÃO
-       ===================================================== */
 
-    updateEyePart("cornea");
+    /* =========================================
+       17. EFEITO PARALLAX NO HERO
+    ========================================= */
+
+    const heroVisual =
+        document.querySelector(".hero-visual");
+
+    if (heroVisual) {
+
+        window.addEventListener("scroll", () => {
+
+            const scroll =
+                window.scrollY;
+
+            if (scroll < 700) {
+
+                heroVisual.style.transform =
+                    `translateY(${scroll * 0.08}px)`;
+            }
+
+        });
+
+    }
+
+
+    /* =========================================
+       18. CURSOR / HOVER DOS CARDS
+    ========================================= */
+
+    const cards =
+        document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+
+        card.addEventListener("mousemove", event => {
+
+            const rect =
+                card.getBoundingClientRect();
+
+            const x =
+                event.clientX - rect.left;
+
+            const y =
+                event.clientY - rect.top;
+
+            const centerX =
+                rect.width / 2;
+
+            const centerY =
+                rect.height / 2;
+
+            const rotateX =
+                ((y - centerY) / centerY) * -2;
+
+            const rotateY =
+                ((x - centerX) / centerX) * 2;
+
+            card.style.transform =
+                `translateY(-8px)
+                 perspective(700px)
+                 rotateX(${rotateX}deg)
+                 rotateY(${rotateY}deg)`;
+
+        });
+
+        card.addEventListener("mouseleave", () => {
+
+            card.style.transform =
+                "translateY(0)";
+
+        });
+
+    });
+
+
+    /* =========================================
+       19. MENSAGEM DE CARREGAMENTO
+    ========================================= */
+
+    document.body.classList.add("site-loaded");
+
+
+    /* =========================================
+       20. LOG
+    ========================================= */
 
     console.log(
-        "Visão em Foco carregado com sucesso."
+        "✓ Site Anomalias da Visão carregado com sucesso."
     );
 
 });
-```
-
