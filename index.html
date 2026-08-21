@@ -2111,3 +2111,94 @@
 </body>
 
 </html>
+
+<!-- ACESSIBILIDADE -->
+<button id="increaseFont">A+</button>
+<button id="decreaseFont">A-</button>
+
+<select id="fontSelector">
+    <option value="Inter">Inter</option>
+    <option value="Arial">Arial</option>
+    <option value="Georgia">Georgia</option>
+</select>
+
+<button id="themeToggle">🌙</button>
+
+
+<!-- PESQUISA -->
+<input
+    type="text"
+    id="searchInput"
+    placeholder="Pesquisar..."
+>
+
+<button id="searchButton">
+    🔎
+</button>
+
+
+<!-- LABORATÓRIO -->
+<select id="visionType">
+    <option value="normal">Visão normal</option>
+    <option value="miopia">Miopia</option>
+    <option value="hipermetropia">
+        Hipermetropia
+    </option>
+    <option value="astigmatismo">
+        Astigmatismo
+    </option>
+    <option value="presbiopia">
+        Presbiopia
+    </option>
+    <option value="daltonismo">
+        Daltonismo
+    </option>
+</select>
+
+<input
+    type="range"
+    id="intensity"
+    min="0"
+    max="100"
+    value="0"
+>
+
+<span id="intensityValue">0%</span>
+
+<div id="simulationObject">
+    <!-- simulador -->
+</div>
+
+<div id="labExplanation">
+    <strong>Visão normal</strong>
+    <br>
+    Selecione uma anomalia para começar.
+</div>
+
+<button id="resetLab">
+    🔄 Resetar
+</button>
+
+
+<!-- QUIZ -->
+<div class="quiz-progress">
+    <div
+        class="quiz-progress-bar"
+        id="quizProgress">
+    </div>
+</div>
+
+<h3 id="quizQuestion">
+    Pergunta
+</h3>
+
+<div id="quizAnswers">
+    <!-- respostas criadas pelo JS -->
+</div>
+
+<button
+    id="retryQuiz"
+    style="display:none;"
+>
+    Tentar novamente
+</button>
