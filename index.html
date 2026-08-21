@@ -4,28 +4,35 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <meta name="description"
-          content="Anomalias da Visão — conheça, compare e experimente visualmente diferentes alterações da visão.">
+    <meta
+        name="description"
+        content="Anomalias da Visão — um projeto interativo sobre saúde ocular, visão e principais anomalias visuais.">
 
     <title>Anomalias da Visão | Ciência & Saúde</title>
 
+    <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-          rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
 
-    <link rel="stylesheet"
-          href="style.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
+
 
 <!-- =====================================================
      HEADER
@@ -35,14 +42,22 @@
 
     <nav class="navbar">
 
+        <!-- LOGO -->
+
         <a href="#inicio" class="logo">
 
-            <span class="logo-icon">👁️</span>
+            <span class="logo-icon">
+                👁️
+            </span>
 
-            <span>Anomalias da Visão</span>
+            <span>
+                Anomalias da Visão
+            </span>
 
         </a>
 
+
+        <!-- MENU -->
 
         <ul class="nav-links">
 
@@ -75,50 +90,91 @@
             </li>
 
             <li>
-                <a href="#quiz">Quiz</a>
-            </li>
-
-            <li>
                 <a href="#faq">FAQ</a>
             </li>
 
         </ul>
 
 
+        <!-- PESQUISA + ACESSIBILIDADE -->
+
         <div class="nav-actions">
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Pesquisar...">
+
+                <button
+                    class="icon-btn"
+                    id="searchButton"
+                    aria-label="Pesquisar">
+
+                    🔎
+
+                </button>
+
+            </div>
+
 
             <button
                 class="icon-btn"
                 id="increaseFont"
-                title="Aumentar fonte">
+                aria-label="Aumentar fonte">
+
                 A+
+
             </button>
+
 
             <button
                 class="icon-btn"
                 id="decreaseFont"
-                title="Diminuir fonte">
+                aria-label="Diminuir fonte">
+
                 A-
+
             </button>
+
+
+            <select
+                id="fontSelector"
+                class="font-selector"
+                aria-label="Escolher fonte">
+
+                <option value="Inter">
+                    Inter
+                </option>
+
+                <option value="Arial">
+                    Arial
+                </option>
+
+                <option value="Georgia">
+                    Georgia
+                </option>
+
+            </select>
+
 
             <button
                 class="icon-btn"
                 id="themeToggle"
-                title="Alterar tema">
-                ☀️
+                aria-label="Alternar tema">
+
+                🌙
+
             </button>
 
-            <button
-                class="icon-btn"
-                id="searchButton"
-                title="Pesquisar">
-                🔎
-            </button>
 
             <button
                 class="menu-toggle"
                 aria-label="Abrir menu">
+
                 ☰
+
             </button>
 
         </div>
@@ -128,15 +184,19 @@
 </header>
 
 
-<main>
 
 <!-- =====================================================
      HERO
 ===================================================== -->
 
-<section class="hero" id="inicio">
+<main>
+
+<section
+    class="hero"
+    id="inicio">
 
     <div class="hero-content">
+
 
         <div class="hero-text reveal">
 
@@ -144,36 +204,51 @@
                 CIÊNCIA • SAÚDE • VISÃO
             </span>
 
+
             <h1>
-                Anomalias
-                <span>da Visão</span>
+
+                Entenda o mundo
+                <span>através da visão.</span>
+
             </h1>
 
+
             <p>
-                Descubra como nossos olhos captam o mundo,
-                entenda as principais alterações da visão
-                e experimente diferentes condições através
-                de um laboratório interativo.
+
+                Descubra como o olho humano funciona,
+                conheça as principais anomalias da visão
+                e experimente diferentes alterações visuais
+                através de um laboratório interativo.
+
             </p>
+
 
             <div class="hero-buttons">
 
                 <a
                     href="#anomalias"
                     class="btn btn-primary">
+
                     👁️ Explorar anomalias
+
                 </a>
+
 
                 <a
                     href="#visao"
                     class="btn btn-secondary">
+
                     🔬 Como funciona a visão?
+
                 </a>
 
             </div>
 
         </div>
 
+
+
+        <!-- OLHO -->
 
         <div class="hero-visual reveal">
 
@@ -186,10 +261,10 @@
 
             <div class="floating-info info-1">
 
-                <strong>≈ 576 MP</strong>
+                <strong>Retina</strong>
 
                 <span>
-                    percepção visual
+                    Capta a luz
                 </span>
 
             </div>
@@ -197,10 +272,10 @@
 
             <div class="floating-info info-2">
 
-                <strong>Retina</strong>
+                <strong>Cristalino</strong>
 
                 <span>
-                    capta a luz
+                    Focaliza imagens
                 </span>
 
             </div>
@@ -211,7 +286,7 @@
                 <strong>Nervo óptico</strong>
 
                 <span>
-                    envia informações ao cérebro
+                    Envia sinais ao cérebro
                 </span>
 
             </div>
@@ -223,8 +298,9 @@
 </section>
 
 
+
 <!-- =====================================================
-     INTRODUÇÃO
+     COMO FUNCIONA A VISÃO
 ===================================================== -->
 
 <section id="visao">
@@ -234,7 +310,7 @@
         <div class="section-header reveal">
 
             <span class="section-tag">
-                01 • O olho humano
+                01 — SISTEMA VISUAL
             </span>
 
             <h2>
@@ -242,15 +318,18 @@
             </h2>
 
             <p>
+
                 A visão acontece através de um sistema
-                complexo que envolve o olho, o nervo óptico
-                e o cérebro.
+                extremamente complexo que envolve o olho,
+                o nervo óptico e o cérebro.
+
             </p>
 
         </div>
 
 
         <div class="vision-grid">
+
 
             <div class="vision-image glass-card reveal">
 
@@ -261,13 +340,16 @@
 
             <div class="parts-grid">
 
+
                 <article class="part-card glass-card reveal">
 
-                    <h3>👁️ Córnea</h3>
+                    <h3>
+                        👁️ Córnea
+                    </h3>
 
                     <p>
-                        Camada transparente que protege o olho
-                        e ajuda a direcionar a luz.
+                        Primeira estrutura que recebe a luz.
+                        Ajuda a direcioná-la para dentro do olho.
                     </p>
 
                 </article>
@@ -275,11 +357,13 @@
 
                 <article class="part-card glass-card reveal">
 
-                    <h3>🎨 Íris</h3>
+                    <h3>
+                        🌈 Íris
+                    </h3>
 
                     <p>
-                        Parte colorida do olho responsável por
-                        controlar a quantidade de luz.
+                        Parte colorida do olho que controla
+                        o tamanho da pupila.
                     </p>
 
                 </article>
@@ -287,11 +371,13 @@
 
                 <article class="part-card glass-card reveal">
 
-                    <h3>⚫ Pupila</h3>
+                    <h3>
+                        ⚫ Pupila
+                    </h3>
 
                     <p>
-                        Abertura localizada no centro da íris
-                        por onde a luz entra.
+                        Abertura responsável pela entrada
+                        de luz no interior do olho.
                     </p>
 
                 </article>
@@ -299,11 +385,13 @@
 
                 <article class="part-card glass-card reveal">
 
-                    <h3>🔍 Cristalino</h3>
+                    <h3>
+                        🔍 Cristalino
+                    </h3>
 
                     <p>
-                        Estrutura que ajuda a focalizar a luz
-                        sobre a retina.
+                        Estrutura que ajuda a focalizar
+                        a imagem sobre a retina.
                     </p>
 
                 </article>
@@ -311,7 +399,9 @@
 
                 <article class="part-card glass-card reveal">
 
-                    <h3>🟣 Retina</h3>
+                    <h3>
+                        🟣 Retina
+                    </h3>
 
                     <p>
                         Tecido sensível à luz que transforma
@@ -323,14 +413,17 @@
 
                 <article class="part-card glass-card reveal">
 
-                    <h3>🧠 Nervo óptico</h3>
+                    <h3>
+                        🧠 Nervo óptico
+                    </h3>
 
                     <p>
-                        Transporta as informações visuais
-                        da retina até o cérebro.
+                        Transporta informações visuais
+                        do olho para o cérebro.
                     </p>
 
                 </article>
+
 
             </div>
 
@@ -341,18 +434,19 @@
 </section>
 
 
+
 <!-- =====================================================
      O QUE SÃO ANOMALIAS
 ===================================================== -->
 
-<section>
+<section id="o-que-sao">
 
     <div class="section-container">
 
         <div class="section-header reveal">
 
             <span class="section-tag">
-                02 • Entenda
+                02 — CONCEITO
             </span>
 
             <h2>
@@ -360,14 +454,18 @@
             </h2>
 
             <p>
+
                 São alterações que podem modificar a forma
-                como uma pessoa enxerga o ambiente.
+                como uma pessoa focaliza, percebe ou interpreta
+                informações visuais.
+
             </p>
 
         </div>
 
 
         <div class="anomalies-grid">
+
 
             <article class="anomaly-card glass-card reveal">
 
@@ -382,8 +480,8 @@
                     </h3>
 
                     <p>
-                        Acontecem quando a luz não é focalizada
-                        corretamente sobre a retina.
+                        Alterações que dificultam a focalização
+                        correta da luz na retina.
                     </p>
 
                 </div>
@@ -408,8 +506,8 @@
                     </h3>
 
                     <p>
-                        Podem modificar a forma como determinadas
-                        cores ou imagens são percebidas.
+                        Podem modificar a maneira como determinadas
+                        cores ou características visuais são percebidas.
                     </p>
 
                 </div>
@@ -434,8 +532,8 @@
                     </h3>
 
                     <p>
-                        Condições que podem afetar estruturas
-                        importantes do olho.
+                        Condições que podem afetar diferentes
+                        estruturas e funções dos olhos.
                     </p>
 
                 </div>
@@ -456,27 +554,29 @@
                     </div>
 
                     <h3>
-                        Alterações relacionadas à idade
+                        Sistema visual
                     </h3>
 
                     <p>
-                        Algumas mudanças visuais tornam-se mais
-                        comuns conforme envelhecemos.
+                        A visão depende da comunicação entre olhos,
+                        nervos e cérebro.
                     </p>
 
                 </div>
 
                 <span class="symptom">
-                    Presbiopia • Degeneração macular
+                    Olho + cérebro
                 </span>
 
             </article>
+
 
         </div>
 
     </div>
 
 </section>
+
 
 
 <!-- =====================================================
@@ -490,7 +590,7 @@
         <div class="section-header reveal">
 
             <span class="section-tag">
-                03 • Principais condições
+                03 — PRINCIPAIS CONDIÇÕES
             </span>
 
             <h2>
@@ -498,8 +598,10 @@
             </h2>
 
             <p>
-                Cada condição pode afetar a visão de uma
-                maneira diferente.
+
+                Explore algumas das condições que podem
+                afetar a visão.
+
             </p>
 
         </div>
@@ -508,9 +610,7 @@
         <div class="anomalies-grid">
 
 
-            <article
-                class="anomaly-card glass-card reveal"
-                data-search="miopia">
+            <article class="anomaly-card glass-card reveal">
 
                 <div>
 
@@ -518,11 +618,13 @@
                         👁️
                     </div>
 
-                    <h3>Miopia</h3>
+                    <h3>
+                        Miopia
+                    </h3>
 
                     <p>
                         Dificuldade para enxergar objetos
-                        que estão distantes.
+                        distantes com nitidez.
                     </p>
 
                 </div>
@@ -534,9 +636,7 @@
             </article>
 
 
-            <article
-                class="anomaly-card glass-card reveal"
-                data-search="hipermetropia">
+            <article class="anomaly-card glass-card reveal">
 
                 <div>
 
@@ -544,25 +644,25 @@
                         👓
                     </div>
 
-                    <h3>Hipermetropia</h3>
+                    <h3>
+                        Hipermetropia
+                    </h3>
 
                     <p>
-                        Pode dificultar principalmente
-                        a focalização de objetos próximos.
+                        Pode causar dificuldade principalmente
+                        na focalização de objetos próximos.
                     </p>
 
                 </div>
 
                 <span class="symptom">
-                    Dificuldade para perto
+                    Dificuldade de perto
                 </span>
 
             </article>
 
 
-            <article
-                class="anomaly-card glass-card reveal"
-                data-search="astigmatismo">
+            <article class="anomaly-card glass-card reveal">
 
                 <div>
 
@@ -570,25 +670,25 @@
                         ✨
                     </div>
 
-                    <h3>Astigmatismo</h3>
+                    <h3>
+                        Astigmatismo
+                    </h3>
 
                     <p>
-                        Pode provocar visão borrada ou
-                        distorcida em diferentes distâncias.
+                        Pode provocar visão borrada ou distorcida
+                        em diferentes distâncias.
                     </p>
 
                 </div>
 
                 <span class="symptom">
-                    Distorção das imagens
+                    Distorção visual
                 </span>
 
             </article>
 
 
-            <article
-                class="anomaly-card glass-card reveal"
-                data-search="presbiopia">
+            <article class="anomaly-card glass-card reveal">
 
                 <div>
 
@@ -596,25 +696,25 @@
                         🔍
                     </div>
 
-                    <h3>Presbiopia</h3>
+                    <h3>
+                        Presbiopia
+                    </h3>
 
                     <p>
-                        Redução gradual da capacidade de
-                        focalizar objetos próximos.
+                        Dificuldade progressiva para focalizar
+                        objetos próximos.
                     </p>
 
                 </div>
 
                 <span class="symptom">
-                    Dificuldade para perto
+                    Visão de perto
                 </span>
 
             </article>
 
 
-            <article
-                class="anomaly-card glass-card reveal"
-                data-search="daltonismo">
+            <article class="anomaly-card glass-card reveal">
 
                 <div>
 
@@ -622,25 +722,25 @@
                         🎨
                     </div>
 
-                    <h3>Daltonismo</h3>
+                    <h3>
+                        Daltonismo
+                    </h3>
 
                     <p>
-                        Alteração na percepção de algumas
-                        cores.
+                        Diferenças na percepção ou distinção
+                        de determinadas cores.
                     </p>
 
                 </div>
 
                 <span class="symptom">
-                    Dificuldade com cores
+                    Percepção de cores
                 </span>
 
             </article>
 
 
-            <article
-                class="anomaly-card glass-card reveal"
-                data-search="catarata">
+            <article class="anomaly-card glass-card reveal">
 
                 <div>
 
@@ -648,11 +748,13 @@
                         🌫️
                     </div>
 
-                    <h3>Catarata</h3>
+                    <h3>
+                        Catarata
+                    </h3>
 
                     <p>
                         Opacificação do cristalino que pode
-                        prejudicar a nitidez da visão.
+                        comprometer a nitidez da visão.
                     </p>
 
                 </div>
@@ -664,9 +766,7 @@
             </article>
 
 
-            <article
-                class="anomaly-card glass-card reveal"
-                data-search="glaucoma">
+            <article class="anomaly-card glass-card reveal">
 
                 <div>
 
@@ -674,25 +774,25 @@
                         👁️
                     </div>
 
-                    <h3>Glaucoma</h3>
+                    <h3>
+                        Glaucoma
+                    </h3>
 
                     <p>
-                        Grupo de condições que pode causar
+                        Grupo de condições que podem causar
                         danos ao nervo óptico.
                     </p>
 
                 </div>
 
                 <span class="symptom">
-                    Alterações no campo visual
+                    Campo visual
                 </span>
 
             </article>
 
 
-            <article
-                class="anomaly-card glass-card reveal"
-                data-search="degeneração macular">
+            <article class="anomaly-card glass-card reveal">
 
                 <div>
 
@@ -700,25 +800,30 @@
                         🟡
                     </div>
 
-                    <h3>Degeneração macular</h3>
+                    <h3>
+                        Degeneração macular
+                    </h3>
 
                     <p>
-                        Pode afetar a região central da visão.
+                        Pode afetar a região central da visão,
+                        especialmente em algumas formas relacionadas à idade.
                     </p>
 
                 </div>
 
                 <span class="symptom">
-                    Alteração da visão central
+                    Visão central
                 </span>
 
             </article>
+
 
         </div>
 
     </div>
 
 </section>
+
 
 
 <!-- =====================================================
@@ -732,16 +837,17 @@
         <div class="section-header reveal">
 
             <span class="section-tag">
-                04 • Comparação visual
+                04 — COMPARAÇÃO
             </span>
 
             <h2>
-                Visão normal × anomalias
+                Visão normal × alterações
             </h2>
 
             <p>
-                Compare algumas alterações visuais de forma
-                simplificada.
+                Uma representação visual simplificada
+                de como diferentes alterações podem afetar
+                a percepção das imagens.
             </p>
 
         </div>
@@ -749,17 +855,20 @@
 
         <div class="simulation-grid">
 
+
             <article class="simulation-card glass-card reveal">
 
                 <div class="simulation-image"></div>
 
                 <div class="simulation-content">
 
-                    <h3>👁️ Visão normal</h3>
+                    <h3>
+                        👁️ Visão normal
+                    </h3>
 
                     <p>
-                        Imagem representada com nitidez,
-                        sem efeito de desfoque.
+                        Imagem representada de maneira nítida
+                        e sem alteração simulada.
                     </p>
 
                 </div>
@@ -771,16 +880,18 @@
 
                 <div
                     class="simulation-image"
-                    style="filter: blur(2px);">
+                    style="filter: blur(3px);">
                 </div>
 
                 <div class="simulation-content">
 
-                    <h3>🔵 Miopia</h3>
+                    <h3>
+                        🔵 Miopia
+                    </h3>
 
                     <p>
-                        Simulação simplificada de uma imagem
-                        distante com menor nitidez.
+                        Objetos distantes podem apresentar
+                        menor nitidez.
                     </p>
 
                 </div>
@@ -792,16 +903,18 @@
 
                 <div
                     class="simulation-image"
-                    style="filter: blur(1.8px);">
+                    style="filter: blur(2px) brightness(1.1);">
                 </div>
 
                 <div class="simulation-content">
 
-                    <h3>🟣 Hipermetropia</h3>
+                    <h3>
+                        🟣 Hipermetropia
+                    </h3>
 
                     <p>
-                        Representação simplificada de dificuldade
-                        de focalização.
+                        A focalização de objetos próximos
+                        pode ficar prejudicada.
                     </p>
 
                 </div>
@@ -813,30 +926,31 @@
 
                 <div
                     class="simulation-image"
-                    style="
-                        transform: scaleX(1.08);
-                        filter: blur(1px);
-                    ">
+                    style="filter: blur(2px) contrast(.7);">
                 </div>
 
                 <div class="simulation-content">
 
-                    <h3>🟠 Astigmatismo</h3>
+                    <h3>
+                        ✨ Astigmatismo
+                    </h3>
 
                     <p>
-                        Representação simplificada de distorção
-                        e perda de nitidez.
+                        Pode produzir borramento e distorção
+                        das imagens.
                     </p>
 
                 </div>
 
             </article>
+
 
         </div>
 
     </div>
 
 </section>
+
 
 
 <!-- =====================================================
@@ -850,7 +964,7 @@
         <div class="section-header reveal">
 
             <span class="section-tag">
-                05 • Comparação
+                05 — RESUMO
             </span>
 
             <h2>
@@ -868,15 +982,25 @@
 
                     <tr>
 
-                        <th>Anomalia</th>
+                        <th>
+                            Anomalia
+                        </th>
 
-                        <th>Distância afetada</th>
+                        <th>
+                            Distância afetada
+                        </th>
 
-                        <th>Característica</th>
+                        <th>
+                            Característica
+                        </th>
 
-                        <th>Região relacionada</th>
+                        <th>
+                            Região relacionada
+                        </th>
 
-                        <th>Correção comum</th>
+                        <th>
+                            Correção comum
+                        </th>
 
                     </tr>
 
@@ -893,11 +1017,12 @@
 
                         <td>Imagem distante borrada</td>
 
-                        <td>Focalização</td>
+                        <td>Sistema óptico</td>
 
-                        <td>Óculos/lentes</td>
+                        <td>Óculos / lentes</td>
 
                     </tr>
+
 
                     <tr>
 
@@ -905,13 +1030,14 @@
 
                         <td>Perto</td>
 
-                        <td>Dificuldade de foco</td>
+                        <td>Dificuldade de focalização</td>
 
-                        <td>Focalização</td>
+                        <td>Sistema óptico</td>
 
-                        <td>Óculos/lentes</td>
+                        <td>Óculos / lentes</td>
 
                     </tr>
+
 
                     <tr>
 
@@ -919,13 +1045,14 @@
 
                         <td>Variável</td>
 
-                        <td>Distorção</td>
+                        <td>Distorção / borramento</td>
 
-                        <td>Córnea/cristalino</td>
+                        <td>Córnea / cristalino</td>
 
-                        <td>Óculos/lentes</td>
+                        <td>Óculos / lentes</td>
 
                     </tr>
+
 
                     <tr>
 
@@ -933,13 +1060,14 @@
 
                         <td>Perto</td>
 
-                        <td>Perda de foco próximo</td>
+                        <td>Perda de acomodação</td>
 
                         <td>Cristalino</td>
 
-                        <td>Óculos/lentes</td>
+                        <td>Óculos / lentes</td>
 
                     </tr>
+
 
                     <tr>
 
@@ -951,7 +1079,7 @@
 
                         <td>Células da retina</td>
 
-                        <td>Recursos ópticos</td>
+                        <td>Recursos de adaptação</td>
 
                     </tr>
 
@@ -966,6 +1094,7 @@
 </section>
 
 
+
 <!-- =====================================================
      SINTOMAS
 ===================================================== -->
@@ -977,11 +1106,11 @@
         <div class="section-header reveal">
 
             <span class="section-tag">
-                06 • Atenção aos sinais
+                06 — ATENÇÃO
             </span>
 
             <h2>
-                Sintomas comuns
+                Sintomas que merecem atenção
             </h2>
 
             <p>
@@ -994,85 +1123,55 @@
 
         <div class="symptoms-grid">
 
-            <div class="symptom-card glass-card reveal">
 
+            <div class="symptom-card glass-card reveal">
                 <span class="symptom-number">01</span>
-
-                <strong>Visão borrada</strong>
-
+                Visão borrada
             </div>
 
 
             <div class="symptom-card glass-card reveal">
-
                 <span class="symptom-number">02</span>
-
-                <strong>Dificuldade para enxergar de longe</strong>
-
+                Dificuldade para enxergar de longe
             </div>
 
 
             <div class="symptom-card glass-card reveal">
-
                 <span class="symptom-number">03</span>
-
-                <strong>Dificuldade para enxergar de perto</strong>
-
+                Dificuldade para enxergar de perto
             </div>
 
 
             <div class="symptom-card glass-card reveal">
-
                 <span class="symptom-number">04</span>
-
-                <strong>Dor ou desconforto ocular</strong>
-
+                Dor ou desconforto ocular
             </div>
 
 
             <div class="symptom-card glass-card reveal">
-
                 <span class="symptom-number">05</span>
-
-                <strong>Sensibilidade à luz</strong>
-
+                Sensibilidade à luz
             </div>
 
 
             <div class="symptom-card glass-card reveal">
-
                 <span class="symptom-number">06</span>
-
-                <strong>Dificuldade para distinguir cores</strong>
-
+                Dificuldade para distinguir cores
             </div>
 
 
             <div class="symptom-card glass-card reveal">
-
                 <span class="symptom-number">07</span>
-
-                <strong>Distorção das imagens</strong>
-
+                Distorção das imagens
             </div>
 
-        </div>
-
-
-        <div class="lab-explanation reveal"
-             style="margin-top:25px;">
-
-            ⚠️ <strong>Importante:</strong>
-            sintomas visuais persistentes ou alterações
-            repentinas devem ser avaliados por um profissional
-            de saúde. As informações deste site são educativas
-            e não substituem uma avaliação médica.
 
         </div>
 
     </div>
 
 </section>
+
 
 
 <!-- =====================================================
@@ -1086,7 +1185,7 @@
         <div class="section-header reveal">
 
             <span class="section-tag">
-                07 • Correção
+                07 — CORREÇÃO
             </span>
 
             <h2>
@@ -1094,8 +1193,8 @@
             </h2>
 
             <p>
-                A abordagem depende da condição e da avaliação
-                de cada pessoa.
+                A forma de correção depende da condição
+                e da avaliação de um profissional.
             </p>
 
         </div>
@@ -1103,49 +1202,71 @@
 
         <div class="treatment-grid">
 
+
             <article class="treatment-card glass-card reveal">
 
-                <div class="icon">👓</div>
+                <span class="icon">
+                    👓
+                </span>
 
-                <h3>Óculos</h3>
+                <h3>
+                    Óculos
+                </h3>
 
             </article>
 
 
             <article class="treatment-card glass-card reveal">
 
-                <div class="icon">🔵</div>
+                <span class="icon">
+                    👁️
+                </span>
 
-                <h3>Lentes de contato</h3>
-
-            </article>
-
-
-            <article class="treatment-card glass-card reveal">
-
-                <div class="icon">🏥</div>
-
-                <h3>Cirurgias</h3>
+                <h3>
+                    Lentes de contato
+                </h3>
 
             </article>
 
 
             <article class="treatment-card glass-card reveal">
 
-                <div class="icon">💊</div>
+                <span class="icon">
+                    🏥
+                </span>
 
-                <h3>Medicamentos específicos</h3>
+                <h3>
+                    Cirurgias
+                </h3>
 
             </article>
 
 
             <article class="treatment-card glass-card reveal">
 
-                <div class="icon">👨‍⚕️</div>
+                <span class="icon">
+                    💊
+                </span>
 
-                <h3>Acompanhamento</h3>
+                <h3>
+                    Medicamentos específicos
+                </h3>
 
             </article>
+
+
+            <article class="treatment-card glass-card reveal">
+
+                <span class="icon">
+                    🩺
+                </span>
+
+                <h3>
+                    Acompanhamento
+                </h3>
+
+            </article>
+
 
         </div>
 
@@ -1154,8 +1275,9 @@
 </section>
 
 
+
 <!-- =====================================================
-     LABORATÓRIO
+     LABORATÓRIO DA VISÃO
 ===================================================== -->
 
 <section
@@ -1167,7 +1289,7 @@
         <div class="section-header reveal">
 
             <span class="section-tag">
-                08 • Experiência interativa
+                08 — EXPERIÊNCIA INTERATIVA
             </span>
 
             <h2>
@@ -1175,8 +1297,11 @@
             </h2>
 
             <p>
-                Experimente uma representação visual
-                simplificada de diferentes alterações da visão.
+
+                Experimente diferentes simulações
+                e observe como alterações visuais
+                podem modificar a percepção.
+
             </p>
 
         </div>
@@ -1189,12 +1314,19 @@
 
                 <div>
 
-                    <h3 style="color:white;">
-                        Simulador de visão
+                    <h3>
+                        Simulador visual
                     </h3>
 
-                    <p style="color:#8ca5bd;">
-                        Ajuste a condição e a intensidade.
+                    <p
+                        style="
+                        color: var(--text-soft);
+                        font-size: .85rem;
+                        ">
+
+                        Escolha uma condição e ajuste
+                        a intensidade do efeito.
+
                     </p>
 
                 </div>
@@ -1204,28 +1336,38 @@
 
                     <span class="status-dot"></span>
 
-                    SISTEMA ONLINE
+                    LABORATÓRIO ONLINE
 
                 </div>
 
             </div>
 
 
+
+            <!-- TELA -->
+
             <div class="lab-screen">
 
-                <div class="simulation-object"></div>
+                <div
+                    class="simulation-object"
+                    id="simulationObject">
+                </div>
 
             </div>
 
+
+
+            <!-- CONTROLES -->
 
             <div class="lab-controls">
 
 
                 <div class="control-box">
 
-                    <label>
-                        👁️ Condição visual
+                    <label for="visionType">
+                        🔬 Tipo de visão
                     </label>
+
 
                     <select id="visionType">
 
@@ -1258,14 +1400,19 @@
                 </div>
 
 
+
                 <div class="control-box">
 
-                    <label>
+                    <label for="intensity">
+
                         🎚️ Intensidade:
+
                         <span id="intensityValue">
                             0%
                         </span>
+
                     </label>
+
 
                     <input
                         type="range"
@@ -1276,39 +1423,40 @@
 
                 </div>
 
+
             </div>
 
+
+
+            <!-- EXPLICAÇÃO -->
 
             <div
                 class="lab-explanation"
                 id="labExplanation">
 
-                <strong>Visão normal</strong>
+                <strong>
+                    Visão normal
+                </strong>
 
                 <br>
 
-                Selecione uma condição para começar
-                a simulação.
+                Selecione uma condição para
+                começar a experiência.
 
             </div>
 
 
-            <div
-                style="
-                    display:flex;
-                    justify-content:flex-end;
-                    margin-top:18px;
-                ">
+            <br>
 
-                <button
-                    class="btn btn-secondary"
-                    id="resetLab">
 
-                    🔄 Resetar laboratório
+            <button
+                class="btn btn-secondary"
+                id="resetLab">
 
-                </button>
+                🔄 Resetar laboratório
 
-            </div>
+            </button>
+
 
         </div>
 
@@ -1317,23 +1465,28 @@
 </section>
 
 
+
 <!-- =====================================================
      MITOS E VERDADES
 ===================================================== -->
 
-<section>
+<section id="mitos">
 
     <div class="section-container">
 
         <div class="section-header reveal">
 
             <span class="section-tag">
-                09 • Verdade ou mito?
+                09 — DESMISTIFICANDO
             </span>
 
             <h2>
                 Mitos e verdades
             </h2>
+
+            <p>
+                Clique nas perguntas para descobrir a resposta.
+            </p>
 
         </div>
 
@@ -1355,15 +1508,51 @@
 
                 <div class="myth-answer">
 
-                    <strong>MITO.</strong>
+                    <strong>
+                        Mito.
+                    </strong>
 
-                    Usar óculos com a correção adequada não
-                    aumenta o grau por si só. A necessidade de
-                    correção depende da condição visual.
+                    <br>
+
+                    Usar óculos com a correção adequada
+                    não aumenta o grau.
 
                 </div>
 
             </article>
+
+
+
+            <article class="myth-card glass-card reveal">
+
+                <div class="myth-title">
+
+                    <span>
+                        Ficar muito tempo no celular deixa
+                        a pessoa míope?
+                    </span>
+
+                    <span>+</span>
+
+                </div>
+
+                <div class="myth-answer">
+
+                    <strong>
+                        Não é tão simples.
+                    </strong>
+
+                    <br>
+
+                    O desenvolvimento da miopia envolve
+                    diversos fatores. Há evidências de
+                    associação entre trabalho de perto,
+                    ambiente e desenvolvimento visual.
+
+                </div>
+
+            </article>
+
 
 
             <article class="myth-card glass-card reveal">
@@ -1380,15 +1569,20 @@
 
                 <div class="myth-answer">
 
-                    <strong>MITO.</strong>
+                    <strong>
+                        Mito.
+                    </strong>
 
-                    Muitas alterações visuais podem ser corrigidas
-                    ou acompanhadas com óculos, lentes e outras
-                    abordagens.
+                    <br>
+
+                    Muitas condições podem ser corrigidas
+                    ou acompanhadas com óculos, lentes
+                    ou outros tratamentos.
 
                 </div>
 
             </article>
+
 
 
             <article class="myth-card glass-card reveal">
@@ -1396,8 +1590,8 @@
                 <div class="myth-title">
 
                     <span>
-                        Daltonismo significa enxergar tudo em
-                        preto e branco?
+                        Daltonismo significa enxergar
+                        tudo em preto e branco?
                     </span>
 
                     <span>+</span>
@@ -1406,40 +1600,20 @@
 
                 <div class="myth-answer">
 
-                    <strong>MITO.</strong>
+                    <strong>
+                        Mito.
+                    </strong>
 
-                    Existem diferentes tipos de daltonismo e
-                    muitos envolvem dificuldade para diferenciar
-                    determinadas cores.
+                    <br>
 
-                </div>
-
-            </article>
-
-
-            <article class="myth-card glass-card reveal">
-
-                <div class="myth-title">
-
-                    <span>
-                        Ficar muito tempo no celular deixa
-                        automaticamente a pessoa míope?
-                    </span>
-
-                    <span>+</span>
-
-                </div>
-
-                <div class="myth-answer">
-
-                    O uso de telas é um tema estudado e hábitos
-                    visuais podem influenciar o conforto ocular.
-                    Porém, não é correto afirmar que simplesmente
-                    usar celular automaticamente causa miopia.
+                    Existem diferentes tipos de alterações
+                    na percepção das cores. Não significa
+                    necessariamente ausência total de cores.
 
                 </div>
 
             </article>
+
 
         </div>
 
@@ -1448,18 +1622,19 @@
 </section>
 
 
+
 <!-- =====================================================
      CURIOSIDADES
 ===================================================== -->
 
-<section>
+<section id="curiosidades">
 
     <div class="section-container">
 
         <div class="section-header reveal">
 
             <span class="section-tag">
-                10 • Você sabia?
+                10 — VOCÊ SABIA?
             </span>
 
             <h2>
@@ -1474,12 +1649,17 @@
 
             <article class="fact-card glass-card reveal">
 
-                <h3>🧠 Olho + cérebro</h3>
+                <h3>
+                    🧠 Olhos + cérebro
+                </h3>
 
                 <p>
+
                     A visão não depende apenas dos olhos.
-                    O cérebro interpreta os sinais recebidos
-                    e participa da construção da percepção visual.
+                    O cérebro interpreta os sinais enviados
+                    pelo sistema visual para construir nossa
+                    percepção do ambiente.
+
                 </p>
 
             </article>
@@ -1487,11 +1667,16 @@
 
             <article class="fact-card glass-card reveal">
 
-                <h3>⚫ Pupila</h3>
+                <h3>
+                    👁️ Pupila
+                </h3>
 
                 <p>
-                    A pupila pode aumentar ou diminuir para
-                    regular a quantidade de luz que entra no olho.
+
+                    A pupila pode aumentar ou diminuir
+                    conforme a quantidade de luz disponível
+                    no ambiente.
+
                 </p>
 
             </article>
@@ -1499,12 +1684,16 @@
 
             <article class="fact-card glass-card reveal">
 
-                <h3>🎨 Cores</h3>
+                <h3>
+                    🎨 Cores
+                </h3>
 
                 <p>
-                    A percepção das cores envolve células
-                    especializadas da retina e o processamento
-                    dessas informações pelo sistema nervoso.
+
+                    A percepção das cores depende da
+                    interação entre a luz, os fotorreceptores
+                    da retina e o processamento cerebral.
+
                 </p>
 
             </article>
@@ -1512,11 +1701,15 @@
 
             <article class="fact-card glass-card reveal">
 
-                <h3>🔍 Cristalino</h3>
+                <h3>
+                    🔍 Foco
+                </h3>
 
                 <p>
-                    O cristalino ajuda o olho a ajustar o foco
-                    para diferentes distâncias.
+
+                    O sistema óptico do olho precisa ajustar
+                    a focalização para diferentes distâncias.
+
                 </p>
 
             </article>
@@ -1524,12 +1717,15 @@
 
             <article class="fact-card glass-card reveal">
 
-                <h3>👁️ Piscar</h3>
+                <h3>
+                    ⚡ Retina
+                </h3>
 
                 <p>
-                    Piscar ajuda a espalhar a lágrima pela
-                    superfície ocular e contribui para a proteção
-                    e lubrificação do olho.
+
+                    A retina possui células especializadas
+                    capazes de responder à luz.
+
                 </p>
 
             </article>
@@ -1537,21 +1733,27 @@
 
             <article class="fact-card glass-card reveal">
 
-                <h3>🌎 Percepção</h3>
+                <h3>
+                    🌎 Percepção
+                </h3>
 
                 <p>
-                    A experiência visual resulta da interação
-                    entre os estímulos captados pelos olhos
-                    e o processamento realizado pelo cérebro.
+
+                    Nossa percepção visual é resultado de
+                    informações captadas pelos olhos e
+                    processadas pelo sistema nervoso.
+
                 </p>
 
             </article>
+
 
         </div>
 
     </div>
 
 </section>
+
 
 
 <!-- =====================================================
@@ -1565,7 +1767,7 @@
         <div class="section-header reveal">
 
             <span class="section-tag">
-                11 • Desafio
+                11 — DESAFIO
             </span>
 
             <h2>
@@ -1573,7 +1775,8 @@
             </h2>
 
             <p>
-                Veja quanto você aprendeu sobre a visão.
+                Responda às perguntas e descubra
+                quanto você aprendeu.
             </p>
 
         </div>
@@ -1592,60 +1795,40 @@
             </div>
 
 
-            <h3
-                class="question"
-                id="question">
-
-                Carregando pergunta...
-
+            <h3 id="quizQuestion">
+                Pergunta
             </h3>
 
 
-            <div
-                class="answers"
-                id="answers">
-            </div>
+            <div id="quizAnswers">
 
-
-            <div
-                style="
-                    display:flex;
-                    gap:10px;
-                    margin-top:25px;
-                    flex-wrap:wrap;
-                ">
-
-                <button
-                    class="btn btn-primary"
-                    id="nextQuestion">
-
-                    Próxima →
-
-                </button>
-
-
-                <button
-                    class="btn btn-secondary"
-                    id="restartQuiz">
-
-                    🔄 Tentar novamente
-
-                </button>
+                <!--
+                    As respostas serão
+                    inseridas pelo JavaScript.
+                -->
 
             </div>
 
 
-            <div
-                id="quizResult"
-                class="lab-explanation"
-                style="display:none;margin-top:25px;">
-            </div>
+            <br>
+
+
+            <button
+                class="btn btn-primary"
+                id="retryQuiz"
+                style="display:none;">
+
+                🔄 Tentar novamente
+
+            </button>
+
 
         </div>
 
     </div>
 
 </section>
+
 
 
 <!-- =====================================================
@@ -1659,11 +1842,11 @@
         <div class="section-header reveal">
 
             <span class="section-tag">
-                12 • Perguntas frequentes
+                12 — DÚVIDAS
             </span>
 
             <h2>
-                FAQ
+                Perguntas frequentes
             </h2>
 
         </div>
@@ -1672,7 +1855,7 @@
         <div class="faq">
 
 
-            <div class="faq-item reveal">
+            <article class="faq-item reveal">
 
                 <div class="faq-question">
 
@@ -1680,22 +1863,22 @@
                         O que são anomalias da visão?
                     </span>
 
-                    <span>＋</span>
+                    <span>+</span>
 
                 </div>
 
                 <div class="faq-answer">
 
-                    São alterações que podem modificar a
-                    capacidade de enxergar com nitidez,
-                    perceber cores ou interpretar imagens.
+                    São alterações que podem afetar
+                    a focalização, percepção ou funcionamento
+                    do sistema visual.
 
                 </div>
 
-            </div>
+            </article>
 
 
-            <div class="faq-item reveal">
+            <article class="faq-item reveal">
 
                 <div class="faq-question">
 
@@ -1704,23 +1887,23 @@
                         e hipermetropia?
                     </span>
 
-                    <span>＋</span>
+                    <span>+</span>
 
                 </div>
 
                 <div class="faq-answer">
 
-                    A miopia geralmente dificulta a visão
+                    A miopia costuma dificultar a visão
                     de objetos distantes, enquanto a
-                    hipermetropia pode dificultar principalmente
-                    a focalização de objetos próximos.
+                    hipermetropia pode dificultar
+                    principalmente a visão de perto.
 
                 </div>
 
-            </div>
+            </article>
 
 
-            <div class="faq-item reveal">
+            <article class="faq-item reveal">
 
                 <div class="faq-question">
 
@@ -1728,22 +1911,22 @@
                         O que causa astigmatismo?
                     </span>
 
-                    <span>＋</span>
+                    <span>+</span>
 
                 </div>
 
                 <div class="faq-answer">
 
-                    Está relacionado principalmente à forma
-                    da córnea ou do cristalino, que pode
-                    apresentar uma curvatura irregular.
+                    Ele geralmente está relacionado a
+                    uma curvatura irregular da córnea
+                    ou, em alguns casos, do cristalino.
 
                 </div>
 
-            </div>
+            </article>
 
 
-            <div class="faq-item reveal">
+            <article class="faq-item reveal">
 
                 <div class="faq-question">
 
@@ -1751,22 +1934,22 @@
                         O que é presbiopia?
                     </span>
 
-                    <span>＋</span>
+                    <span>+</span>
 
                 </div>
 
                 <div class="faq-answer">
 
-                    É uma alteração relacionada ao envelhecimento
-                    que reduz gradualmente a capacidade de
-                    focalizar objetos próximos.
+                    É uma alteração relacionada ao
+                    envelhecimento que reduz gradualmente
+                    a capacidade de focalizar objetos próximos.
 
                 </div>
 
-            </div>
+            </article>
 
 
-            <div class="faq-item reveal">
+            <article class="faq-item reveal">
 
                 <div class="faq-question">
 
@@ -1774,22 +1957,22 @@
                         Daltonismo é uma doença?
                     </span>
 
-                    <span>＋</span>
+                    <span>+</span>
 
                 </div>
 
                 <div class="faq-answer">
 
-                    Daltonismo é um termo utilizado para diferentes
-                    alterações na percepção das cores. Nem todos
-                    os casos são considerados uma doença ocular.
+                    O daltonismo é uma alteração na
+                    percepção das cores e pode apresentar
+                    diferentes formas.
 
                 </div>
 
-            </div>
+            </article>
 
 
-            <div class="faq-item reveal">
+            <article class="faq-item reveal">
 
                 <div class="faq-question">
 
@@ -1797,22 +1980,23 @@
                         Como saber se preciso usar óculos?
                     </span>
 
-                    <span>＋</span>
+                    <span>+</span>
 
                 </div>
 
                 <div class="faq-answer">
 
-                    A melhor forma é realizar uma avaliação
-                    oftalmológica. Sintomas como visão borrada
-                    podem ter diversas causas.
+                    Uma avaliação com um profissional
+                    da área da saúde ocular é a melhor
+                    maneira de verificar a necessidade
+                    de correção visual.
 
                 </div>
 
-            </div>
+            </article>
 
 
-            <div class="faq-item reveal">
+            <article class="faq-item reveal">
 
                 <div class="faq-question">
 
@@ -1820,21 +2004,22 @@
                         É possível prevenir problemas de visão?
                     </span>
 
-                    <span>＋</span>
+                    <span>+</span>
 
                 </div>
 
                 <div class="faq-answer">
 
-                    Algumas condições podem ser prevenidas ou
-                    ter seus riscos reduzidos com cuidados
-                    adequados e acompanhamento profissional.
-                    Outras possuem fatores genéticos ou
-                    relacionados ao envelhecimento.
+                    Algumas condições podem ter fatores
+                    de risco modificáveis, enquanto outras
+                    não podem ser completamente prevenidas.
+                    Avaliações regulares podem ajudar
+                    na detecção precoce.
 
                 </div>
 
-            </div>
+            </article>
+
 
         </div>
 
@@ -1843,18 +2028,19 @@
 </section>
 
 
+
 <!-- =====================================================
      REFERÊNCIAS
 ===================================================== -->
 
-<section>
+<section id="referencias">
 
     <div class="section-container">
 
         <div class="section-header reveal">
 
             <span class="section-tag">
-                13 • Pesquisa
+                13 — PESQUISA
             </span>
 
             <h2>
@@ -1862,8 +2048,10 @@
             </h2>
 
             <p>
-                Consulte materiais de organizações e instituições
-                de referência para aprofundar o conhecimento.
+
+                Consulte materiais de instituições
+                reconhecidas para aprofundar seus estudos.
+
             </p>
 
         </div>
@@ -1872,55 +2060,47 @@
         <div class="references-grid">
 
 
-            <a
-                class="reference-card glass-card reveal"
-                href="https://www.who.int/"
-                target="_blank">
+            <article class="reference-card glass-card reveal">
 
                 <h3>
-                    🌎 Organização Mundial da Saúde
+                    Organização Mundial da Saúde
                 </h3>
 
                 <p>
-                    Informações e materiais sobre saúde ocular
-                    e condições relacionadas à visão.
+                    Informações e materiais relacionados
+                    à saúde ocular e deficiência visual.
                 </p>
 
-            </a>
+            </article>
 
 
-            <a
-                class="reference-card glass-card reveal"
-                href="https://www.nei.nih.gov/"
-                target="_blank">
+            <article class="reference-card glass-card reveal">
 
                 <h3>
-                    🔬 National Eye Institute
+                    Ministério da Saúde
                 </h3>
 
                 <p>
-                    Conteúdos científicos e educativos
-                    relacionados à saúde dos olhos.
+                    Materiais públicos relacionados à
+                    saúde e prevenção.
                 </p>
 
-            </a>
+            </article>
 
 
-            <a
-                class="reference-card glass-card reveal"
-                href="https://www.aao.org/"
-                target="_blank">
+            <article class="reference-card glass-card reveal">
 
                 <h3>
-                    👁️ American Academy of Ophthalmology
+                    Materiais científicos
                 </h3>
 
                 <p>
-                    Materiais educativos sobre doenças,
-                    prevenção e cuidados com a visão.
+                    Artigos, livros e conteúdos acadêmicos
+                    utilizados como base para o projeto.
                 </p>
 
-            </a>
+            </article>
+
 
         </div>
 
@@ -1928,7 +2108,9 @@
 
 </section>
 
+
 </main>
+
 
 
 <!-- =====================================================
@@ -1957,11 +2139,14 @@
             </a>
 
 
-            <p style="margin-top:15px;max-width:350px;">
+            <br>
 
-                Um projeto educativo para explorar
-                o funcionamento da visão e conhecer
-                diferentes alterações visuais.
+
+            <p>
+
+                Um projeto educativo dedicado a explicar
+                de maneira simples, visual e interativa
+                o funcionamento da visão humana.
 
             </p>
 
@@ -1974,6 +2159,10 @@
                 Navegação
             </h3>
 
+            <a href="#inicio">
+                Início
+            </a>
+
             <a href="#visao">
                 Como funciona
             </a>
@@ -1984,10 +2173,6 @@
 
             <a href="#laboratorio">
                 Laboratório
-            </a>
-
-            <a href="#quiz">
-                Quiz
             </a>
 
         </div>
@@ -2007,12 +2192,12 @@
                 Tratamentos
             </a>
 
-            <a href="#comparacao">
-                Comparação
+            <a href="#mitos">
+                Mitos e verdades
             </a>
 
-            <a href="#faq">
-                FAQ
+            <a href="#quiz">
+                Quiz
             </a>
 
         </div>
@@ -2021,29 +2206,30 @@
         <div>
 
             <h3>
-                Projeto
+                Informações
             </h3>
 
-            <a href="#">
+            <a href="#faq">
+                FAQ
+            </a>
+
+            <a href="#referencias">
                 Referências
             </a>
 
-            <a href="#">
-                Acessibilidade
-            </a>
-
-            <a href="#">
-                Sobre o projeto
+            <a href="#curiosidades">
+                Curiosidades
             </a>
 
         </div>
+
 
     </div>
 
 
     <div class="footer-bottom">
 
-        © <span id="currentYear"></span>
+        © <span data-year></span>
         Anomalias da Visão.
         Projeto educativo.
 
@@ -2052,153 +2238,13 @@
 </footer>
 
 
-<!-- =====================================================
-     BOTÃO VOLTAR AO TOPO
-===================================================== -->
-
-<button
-    id="backToTop"
-    class="icon-btn"
-    title="Voltar ao topo"
-    style="
-        position:fixed;
-        right:25px;
-        bottom:25px;
-        z-index:999;
-        opacity:0;
-        pointer-events:none;
-        transition:.3s;
-    ">
-
-    ↑
-
-</button>
-
 
 <!-- =====================================================
-     BUSCA
+     JAVASCRIPT
 ===================================================== -->
-
-<div
-    id="searchBox"
-    style="
-        position:fixed;
-        top:90px;
-        right:5%;
-        z-index:1100;
-        display:none;
-    ">
-
-    <input
-        id="searchInput"
-        type="text"
-        placeholder="Pesquisar no site..."
-        style="
-            width:280px;
-            padding:14px;
-            border-radius:12px;
-            border:1px solid rgba(255,255,255,.15);
-            background:#081a2c;
-            color:white;
-            outline:none;
-        ">
-
-</div>
-
 
 <script src="script.js"></script>
 
 </body>
 
 </html>
-
-<!-- ACESSIBILIDADE -->
-<button id="increaseFont">A+</button>
-<button id="decreaseFont">A-</button>
-
-<select id="fontSelector">
-    <option value="Inter">Inter</option>
-    <option value="Arial">Arial</option>
-    <option value="Georgia">Georgia</option>
-</select>
-
-<button id="themeToggle">🌙</button>
-
-
-<!-- PESQUISA -->
-<input
-    type="text"
-    id="searchInput"
-    placeholder="Pesquisar..."
->
-
-<button id="searchButton">
-    🔎
-</button>
-
-
-<!-- LABORATÓRIO -->
-<select id="visionType">
-    <option value="normal">Visão normal</option>
-    <option value="miopia">Miopia</option>
-    <option value="hipermetropia">
-        Hipermetropia
-    </option>
-    <option value="astigmatismo">
-        Astigmatismo
-    </option>
-    <option value="presbiopia">
-        Presbiopia
-    </option>
-    <option value="daltonismo">
-        Daltonismo
-    </option>
-</select>
-
-<input
-    type="range"
-    id="intensity"
-    min="0"
-    max="100"
-    value="0"
->
-
-<span id="intensityValue">0%</span>
-
-<div id="simulationObject">
-    <!-- simulador -->
-</div>
-
-<div id="labExplanation">
-    <strong>Visão normal</strong>
-    <br>
-    Selecione uma anomalia para começar.
-</div>
-
-<button id="resetLab">
-    🔄 Resetar
-</button>
-
-
-<!-- QUIZ -->
-<div class="quiz-progress">
-    <div
-        class="quiz-progress-bar"
-        id="quizProgress">
-    </div>
-</div>
-
-<h3 id="quizQuestion">
-    Pergunta
-</h3>
-
-<div id="quizAnswers">
-    <!-- respostas criadas pelo JS -->
-</div>
-
-<button
-    id="retryQuiz"
-    style="display:none;"
->
-    Tentar novamente
-</button>
